@@ -6,8 +6,10 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> </title>
-
+    <title><%: Page.Title %>Munniyandi Villas </title>
+     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
+         <link rel="stylesheet" href="/css/SiteCss.css" type="text/css" />
+    </asp:ContentPlaceHolder>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
@@ -17,7 +19,7 @@
 
 </head>
 <body>
-    <form runat="server">
+     <form runat="server">     
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -38,35 +40,46 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">MUNNIYANDI VILLAS</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Pages/Billinglist">Billing</a></li>
-                        <li><a runat="server" href="~/Pages/Orders">Order</a></li>
-                        <li><a runat="server" href="~/Pages/AdminControls">Admin Controls</a></li>
-                    </ul>
-                </div>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <!-- Navbar content -->
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="navbar-brand">Munniyandi Villas</li>
+                    <li class="nav-item active">
+                        <a class="nav-link" runat="server"  href="#">Menu<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" runat="server"  href="Orders/OrdersPlaced">Admin Controls</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" runat="server"  href="Orders/OrdersPlaced">Billing</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" runat="server"  href="Orders/OrdersPlaced">Cart</a>
+                    </li>
+                </ul>
             </div>
-        </div>
-        <div class="container body-content" text-align:"center">
+            </nav>
+         <div style="background-image: url('../Images/kolam 1.jpg'); background-attachment: scroll; ">
+   
+        <div class="container body-content" text-align:"center"   >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
+         </div>   
+        </div>
+            </form>
+         
+    <footer>
                 <p style="text-align:center">&copy; <%: DateTime.Now.Year %> -Munniyandi Villas Pvt.Ltd</p>
                 <p style="text-align:center">Always Welcomes You !!!</p>
             </footer>
-        </div>
 
-    </form>
+
+
 </body>
 </html>

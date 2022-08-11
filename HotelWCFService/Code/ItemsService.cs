@@ -71,7 +71,16 @@ namespace HotelWCFService
             }
         }
 
+        public DataTable GetMenu()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = "Select ItemId, ItemName as Dish, Price from Items WHERE ItemActive = 1;";
+                DataTable dt = GenCon.Executor(cmd);
+                return dt;
+            }
 
+        }
         public DataTable GetItems()
         {
 

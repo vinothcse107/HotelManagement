@@ -769,6 +769,12 @@ namespace HotelManagement.HotelService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetOrderItemsForTable", ReplyAction="http://tempuri.org/IItemsService/GetOrderItemsForTableResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> GetOrderItemsForTableAsync(int TableNo);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetMenu", ReplyAction="http://tempuri.org/IItemsService/GetMenuResponse")]
+        System.Data.DataTable GetMenu();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetMenu", ReplyAction="http://tempuri.org/IItemsService/GetMenuResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetMenuAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/NewOrderForTable", ReplyAction="http://tempuri.org/IItemsService/NewOrderForTableResponse")]
         int NewOrderForTable(int TableNo, int WaiterId);
         
@@ -827,6 +833,14 @@ namespace HotelManagement.HotelService {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> GetOrderItemsForTableAsync(int TableNo) {
             return base.Channel.GetOrderItemsForTableAsync(TableNo);
+        }
+        
+        public System.Data.DataTable GetMenu() {
+            return base.Channel.GetMenu();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetMenuAsync() {
+            return base.Channel.GetMenuAsync();
         }
         
         public int NewOrderForTable(int TableNo, int WaiterId) {
