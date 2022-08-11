@@ -15,7 +15,8 @@ namespace HotelWCFService.Models
         public int Price { get; set; }
         public int TotalQuantity { get; set; }
         public int ItemActive { get; set; }
+        public int FoodCategoryId { get; set; }
         public ICollection<Order_Items_Link> Orders { get; set; }
-       
+
     }
 }

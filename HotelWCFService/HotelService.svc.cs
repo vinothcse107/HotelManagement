@@ -21,7 +21,10 @@ namespace HotelWCFService
         ResponseDTO Login(LoginDTO user);
 
         [OperationContract]
-        bool Signup(Users user);
+        bool AddAccount(Users user);
+
+        [OperationContract]
+        DataTable GetRoles();
     }
     [ServiceContract]
     public interface IHotelService
@@ -37,7 +40,7 @@ namespace HotelWCFService
         DataTable GetOrderItemsForTable(int TableNo);
 
         [OperationContract]
-        int NewOrderForTable(int TableNo , int WaiterId); // Returns Order Nummber
+        int NewOrderForTable(int TableNo, int WaiterId); // Returns Order Nummber
 
         [OperationContract]
         int ExistingOrderForTable(int TableNo);
@@ -63,7 +66,7 @@ namespace HotelWCFService
     }
 
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public partial class HotelService : IHotelService , IItemsService, IAdminService , IAccountService
+    public partial class HotelService : IHotelService, IItemsService, IAdminService, IAccountService
     {
         public DataTable GetTables()
         {
@@ -73,43 +76,6 @@ namespace HotelWCFService
                 DataTable dt = GenCon.Executor(cmd);
                 return dt;
             }
-        }
-
-        public ResponseDTO Login(LoginDTO user)
-        {
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                cmd.CommandText = $"SELECT * FROM User u WHERE  u.Username = '{user.Username}';";
-                DataTable dt = GenCon.Executor(cmd);
-                var x = dt.Rows[0][1].ToString();
-                var y = dt.Rows[0][2].ToString();
-                var Id = Convert.ToInt32(dt.Rows[0][0]);
-
-                if(user.Username.Equals(x) && user.Password.Equals(y))
-                {
-                    ResponseDTO rt = new ResponseDTO()
-                    {
-                        userId = Id,
-                        access = true,
-                        message = "Access Allowed"
-                    };
-                    return rt;
-                }
-                else {
-                    ResponseDTO rt = new ResponseDTO()
-                    {
-                        userId = -1,
-                        access = false,
-                        message = "Invalid Access"
-                    };
-                    return rt;
-                 }
-            }
-        }
-
-        public bool Signup(Users user)
-        {
-            throw new NotImplementedException();
         }
     }
 }

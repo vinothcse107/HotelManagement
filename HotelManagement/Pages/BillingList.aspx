@@ -2,6 +2,7 @@
       CodeBehind="BillingList.aspx.cs" Inherits="HotelManagement._Default" %>
 
       <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
             <br />
             <div class="jumbotron" style="background-color: #FFFFFF; text-align:center">
 

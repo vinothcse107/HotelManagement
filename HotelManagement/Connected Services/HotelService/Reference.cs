@@ -947,11 +947,17 @@ namespace HotelManagement.HotelService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/Login", ReplyAction="http://tempuri.org/IAccountService/LoginResponse")]
         System.Threading.Tasks.Task<HotelManagement.HotelService.ResponseDTO> LoginAsync(HotelManagement.HotelService.LoginDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/Signup", ReplyAction="http://tempuri.org/IAccountService/SignupResponse")]
-        bool Signup(HotelManagement.HotelService.Users user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/AddAccount", ReplyAction="http://tempuri.org/IAccountService/AddAccountResponse")]
+        bool AddAccount(HotelManagement.HotelService.Users user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/Signup", ReplyAction="http://tempuri.org/IAccountService/SignupResponse")]
-        System.Threading.Tasks.Task<bool> SignupAsync(HotelManagement.HotelService.Users user);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/AddAccount", ReplyAction="http://tempuri.org/IAccountService/AddAccountResponse")]
+        System.Threading.Tasks.Task<bool> AddAccountAsync(HotelManagement.HotelService.Users user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/GetRoles", ReplyAction="http://tempuri.org/IAccountService/GetRolesResponse")]
+        System.Data.DataTable GetRoles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/GetRoles", ReplyAction="http://tempuri.org/IAccountService/GetRolesResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetRolesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -989,12 +995,20 @@ namespace HotelManagement.HotelService {
             return base.Channel.LoginAsync(user);
         }
         
-        public bool Signup(HotelManagement.HotelService.Users user) {
-            return base.Channel.Signup(user);
+        public bool AddAccount(HotelManagement.HotelService.Users user) {
+            return base.Channel.AddAccount(user);
         }
         
-        public System.Threading.Tasks.Task<bool> SignupAsync(HotelManagement.HotelService.Users user) {
-            return base.Channel.SignupAsync(user);
+        public System.Threading.Tasks.Task<bool> AddAccountAsync(HotelManagement.HotelService.Users user) {
+            return base.Channel.AddAccountAsync(user);
+        }
+        
+        public System.Data.DataTable GetRoles() {
+            return base.Channel.GetRoles();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetRolesAsync() {
+            return base.Channel.GetRolesAsync();
         }
     }
 }

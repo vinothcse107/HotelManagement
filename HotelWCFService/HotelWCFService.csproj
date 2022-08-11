@@ -70,6 +70,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\AccountService.cs" />
     <Compile Include="Code\AdminService.cs" />
     <Compile Include="Code\ItemsService.cs" />
     <Compile Include="DTO\LoginDTO.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="HotelService.svc.cs">
       <DependentUpon>HotelService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Models\FoodCategory.cs" />
     <Compile Include="Models\Items.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Order_Items_Link.cs" />

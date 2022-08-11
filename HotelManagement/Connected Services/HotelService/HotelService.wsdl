@@ -69,11 +69,17 @@
   <wsdl:message name="IAccountService_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IAccountService_Signup_InputMessage">
-    <wsdl:part name="parameters" element="tns:Signup" />
+  <wsdl:message name="IAccountService_AddAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAccount" />
   </wsdl:message>
-  <wsdl:message name="IAccountService_Signup_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SignupResponse" />
+  <wsdl:message name="IAccountService_AddAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_GetRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_GetRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
   </wsdl:message>
   <wsdl:portType name="IHotelService">
     <wsdl:operation name="GetTables">
@@ -122,9 +128,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/Login" message="tns:IAccountService_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/LoginResponse" message="tns:IAccountService_Login_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Signup">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/Signup" message="tns:IAccountService_Signup_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/SignupResponse" message="tns:IAccountService_Signup_OutputMessage" />
+    <wsdl:operation name="AddAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/AddAccount" message="tns:IAccountService_AddAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/AddAccountResponse" message="tns:IAccountService_AddAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/GetRoles" message="tns:IAccountService_GetRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/GetRolesResponse" message="tns:IAccountService_GetRoles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IHotelService" type="tns:IHotelService">
@@ -228,8 +238,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Signup">
-      <soap:operation soapAction="http://tempuri.org/IAccountService/Signup" style="document" />
+    <wsdl:operation name="AddAccount">
+      <soap:operation soapAction="http://tempuri.org/IAccountService/AddAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap:operation soapAction="http://tempuri.org/IAccountService/GetRoles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

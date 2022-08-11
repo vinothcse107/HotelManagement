@@ -19,7 +19,7 @@ namespace HotelManagement
             AccountServiceClient ac = new AccountServiceClient();
             LoginDTO loginDTO = new LoginDTO()
             {
-                Username = username.Text.ToString(),
+                Username = username.Text.ToLower().ToString(),
                 Password = password.Text.ToString()
             };
 
@@ -30,11 +30,7 @@ namespace HotelManagement
                 Response.Redirect("/Pages/BillingList.aspx");
             }
             else
-            {
                 ResponseLabel.Text = rt.message.ToString();
-                Response.Redirect("/Pages/Signup.aspx");
-            }
-
         }
     }
 }

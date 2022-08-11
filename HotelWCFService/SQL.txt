@@ -2,12 +2,19 @@
 CREATE DATABASE HotelManagement;
 
 use HotelManagement;
+
+CREATE TABLE FoodCategory(
+	CategoryId int PRIMARY KEY IDENTITY(999, 1),
+	CategoryName nvarchar(20) NOT NULL
+)
+
 CREATE TABLE Items (
 	ItemId int PRIMARY KEY NOT NULL, 
 	ItemName nvarchar(100) ,  
 	Price int ,
 	TotalQuantity int ,
-	ItemActive BIT
+	ItemActive BIT,
+	FoodCategoryId int FOREIGN KEY REFERENCES [FoodCategory](CategoryId)
 );
 
 CREATE TABLE Role(
@@ -178,10 +185,10 @@ BEGIN
 			  ('LogeshS' , 'LogeshS' , '9876446548', 1);
 
 	Insert into Items values
-		(1 , 'Dosa' , 70 , 20 , 1) , 
-		(2 , 'Idly' , 40 , 18 , 1),
-		(3 , 'Maggi' , 90 , 30 , 1),
-		(4 , 'Briyani' , 250 , 50 , 1);
+		(1 , 'Dosa' , 70 , 20 , 1 , 999) , 
+		(2 , 'Idly' , 40 , 18 , 1 , 999),
+		(3 , 'Maggi' , 90 , 30 , 1 , 999),
+		(4 , 'Briyani' , 250 , 50 , 1 , 1000);
 
 
 	Insert into cusTable values(1,NULL) , (2,NULL) , (3,NULL),(4,NULL)
@@ -190,6 +197,8 @@ BEGIN
 
 	Insert into Order_Items_Link (ItemId , OrderId ,Quantity) 
 		values(4,1,2),(3,1,2),(1,1,6),(1,2,6);
+
+	INSERT INTO FoodCategory values('Veg') , ('Non-Veg') , ('Ice Cream') , ('Dessert');
 END
 
 -- /----------/----------/----------/----------/----------
