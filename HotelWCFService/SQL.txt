@@ -1,50 +1,54 @@
-﻿CREATE DATABASE HotelManagement;
+﻿DROP DATABASE HotelManagement
+CREATE DATABASE HotelManagement;
+
 use HotelManagement;
 CREATE TABLE Items (
 	ItemId int PRIMARY KEY NOT NULL, 
 	ItemName nvarchar(100) ,  
-	Price int 
+	Price int ,
+	TotalQuantity int ,
+	ItemActive BIT
 );
+
+CREATE TABLE Role(
+	RoleId int primary key,
+	RoleName nvarchar(50) not null 
+)
+
+CREATE TABLE Users(
+	UserId int primary key identity(1,1),
+	Username nvarchar(50) not null,
+	Password nvarchar(50) not null,
+	Phone nvarchar(15) ,
+	Roleid int FOREIGN KEY REFERENCES [Role](RoleId)
+)
 
 CREATE TABLE Orders(
 	Id int PRIMARY KEY NOT NULL,
-	TableId int NOT NULL
-);
+	TableId int NOT NULL,
+	WaiterId int FOREIGN KEY REFERENCES Users(UserId)
+)
 
 CREATE TABLE Order_Items_Link (
    ItemId INTEGER NOT NULL,
    OrderId INTEGER NOT NULL,
    Quantity INTEGER NOT NULL,
    PRIMARY KEY (ItemId, OrderId),
-   FOREIGN KEY(ItemId) REFERENCES Items(ItemId),
-   FOREIGN KEY(OrderId) REFERENCES Orders(Id)
+   FOREIGN KEY(ItemId) REFERENCES Items(ItemId) ,
+   FOREIGN KEY(OrderId) REFERENCES Orders(Id) 
 )
 
 CREATE TABLE CusTable(
 	TableId int primary key not null,
-	OrderId int FOREIGN KEY REFERENCES [Orders](Id)
+	OrderId int FOREIGN KEY REFERENCES [Orders](Id) ,
 )
 
 ALTER TABLE Orders ADD CONSTRAINT FK_CusTable 
-FOREIGN KEY (TableId) REFERENCES [CusTable](TableId)
+FOREIGN KEY (TableId) REFERENCES [CusTable](TableId) 
 
 -- /----------/----------/----------/----------/----------
 
-Insert into Items values
-	(1 , 'Dosa' , 70) , 
-	(2 , 'Idly' , 40),
-	(3 , 'Maggi' , 90),
-	(4 , 'Briyani' , 250);
 
-Insert into cusTable values(1,NULL) , (2,NULL) , (3,NULL),(4,NULL)
-
-Insert into Orders values(1,2);
-Insert into Orders values(2,4);
-
-Insert into Order_Items_Link (ItemId , OrderId ,Quantity) values(4,1,2);
-Insert into Order_Items_Link (ItemId , OrderId ,Quantity) values(3,1,2);
-Insert into Order_Items_Link (ItemId , OrderId ,Quantity) values(1,1,6);
-Insert into Order_Items_Link (ItemId , OrderId ,Quantity) values(1,2,6);
 
 -- /----------/----------/----------/----------/----------
 
@@ -58,16 +62,20 @@ Select * from Items;
 USE HotelManagement;  
 GO  
 CREATE PROCEDURE CreateNewOrder   
-    @TableNo int
+    @TableNo int,
+	@WaiterId int
 AS   
 	declare @i int;
 	set @i = (select count(*) from Orders) + 1;
-	Insert into Orders(Id , TableId) values(@i,@TableNo);
+	Insert into Orders(Id , TableId , WaiterId) values(@i,@TableNo , @WaiterId);
 	update cusTable  set OrderId = @i where cusTable.TableId = @TableNo;
-    
+	select count(*) from Orders;
 GO
+DROP PROCEDURE CreateNewOrder
 
-EXEC CreateNewOrder 2;
+--INSERT INTO Items (ItemId , ItemName , Price) values (5, sd , 70)
+
+EXEC CreateNewOrder 4;
 
 -- /----------/----------/----------/----------/----------
 
@@ -76,13 +84,13 @@ GO
 CREATE PROCEDURE GetAllOrderedItemsForTable   
     @TableNo int
 AS   
-	select x.OrderId , i.ItemName , i.Price , x.Quantity 
+	select i.ItemName , i.Price , x.Quantity 
 	from Order_Items_Link x join Items i 
 	on x.ItemId = i.ItemId 
 	where x.OrderId = (select c.OrderId from CusTable c where c.TableId = @TableNo);
 GO
 
-EXEC GetAllOrderedItemsForTable 4
+EXEC GetAllOrderedItemsForTable 3
 
 
 -- /----------/----------/----------/----------/----------
@@ -90,12 +98,135 @@ EXEC GetAllOrderedItemsForTable 4
 CREATE PROCEDURE GetItemsByOrderId   
     @OrderId int
 AS   
-	select x.OrderId , i.ItemName , i.Price , x.Quantity 
+	select i.ItemName , i.Price , x.Quantity 
 	from Order_Items_Link x join Items i 
 	on x.ItemId = i.ItemId 
 	where x.OrderId = @OrderId;
 GO
 
-EXEC GetItemsByOrderId 17
+EXEC GetItemsByOrderId 4
 
 -- /----------/----------/----------/----------/----------
+
+CREATE PROCEDURE AddItemstoOrder
+(
+	@ItemId int ,
+    @OrderId int ,
+	@Quantity int
+)
+AS   
+	IF @ItemId NOT IN (SELECT i.ItemId from Order_Items_Link x
+			join Items i on x.ItemId = i.ItemId where x.OrderId = @OrderId)
+		BEGIN
+			INSERT INTO Order_Items_Link VALUES(@ItemId , @OrderId, @Quantity)
+		END
+	ELSE
+		BEGIN
+			UPDATE Order_Items_Link SET Quantity = @Quantity 
+			WHERE OrderId = @OrderId AND  ItemId= @ItemId
+		END
+GO
+
+
+EXEC AddItemstoOrder 1 , 17 , 18
+
+-- /----------/----------/----------/----------/----------
+
+
+CREATE PROCEDURE DeleteItem(@ItemId INT)
+AS
+	UPDATE Items SET ItemActive = 0 WHERE ItemId = @ItemId;
+	SELECT * FROM Items WHERE ItemActive = 1;
+GO
+
+-- /----------/----------/----------/----------/----------
+
+CREATE PROCEDURE AddItemToMenu
+(
+	@ItemName nvarchar(25),
+    @Price int
+)
+AS   
+	DECLARE @ItemId int , @TotalQuantity int = 0;
+	-- Item name should be PascalCase (Frontend)
+	IF @ItemName NOT IN (SELECT i.ItemName from Items i)
+		BEGIN
+			SET @ItemId = (SELECT COUNT(*) FROM Items) + 1
+			INSERT INTO Items VALUES(@ItemId , @ItemName, @Price, @TotalQuantity, 1)
+		END
+	ELSE
+		BEGIN
+			UPDATE Items SET  Price = @Price , TotalQuantity = @TotalQuantity  , ItemActive = 1
+			WHERE ItemName = @ItemName
+		END
+GO
+
+-- /----------/----------/----------/----------/----------
+
+Create procedure Starter
+AS
+BEGIN 
+	Insert into Role values(1 , 'Waiter');
+	Insert into Role values(2 , 'Admin');
+	Insert into Role values(3 , 'User');
+
+	Insert into Users 
+		values('vino' , 'vino' , '987644654', 3),
+			  ('Ranjith' , 'Randy' , '9876446545', 3),
+			  ('Keerthi' , 'Keerthi' , '9876446546', 2),
+			  ('Logesh' , 'Logesh' , '9876446547', 1),
+			  ('LogeshS' , 'LogeshS' , '9876446548', 1);
+
+	Insert into Items values
+		(1 , 'Dosa' , 70 , 20 , 1) , 
+		(2 , 'Idly' , 40 , 18 , 1),
+		(3 , 'Maggi' , 90 , 30 , 1),
+		(4 , 'Briyani' , 250 , 50 , 1);
+
+
+	Insert into cusTable values(1,NULL) , (2,NULL) , (3,NULL),(4,NULL)
+
+	Insert into Orders values(0,4,4) , (1,2,5) ,(2,1,4) , (4,4,NULL);
+
+	Insert into Order_Items_Link (ItemId , OrderId ,Quantity) 
+		values(4,1,2),(3,1,2),(1,1,6),(1,2,6);
+END
+
+-- /----------/----------/----------/----------/----------
+EXEC Starter;
+
+
+SELECT c.OrderId from CusTable c WHERE c.TableId = 3
+
+DELETE FROM CusTable WHERE TableId = 6;
+-- 
+
+
+
+EXEC CreateNewOrder 1 , 9
+EXEC AddItemstoOrder 1, 5 ,5
+EXEC AddItemstoOrder 2, 5 ,8
+EXEC GetAllOrderedItemsForTable 1
+EXEC DeleteItem 2;
+
+	
+
+select * from Items;
+
+EXEC AddItem 'Poori' , 110
+
+
+select * from Items;
+
+EXEC dbo.AddItemToMenu Dosa , 100
+
+select * from CusTable
+
+INSERT INTO CusTable values(5, 0)
+
+
+
+
+declare @i int;
+set @i = (select count(*) from CusTable)+ 1;
+INSERT INTO CusTable values ( @i , 0);
