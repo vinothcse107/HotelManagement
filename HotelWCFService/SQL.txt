@@ -1,0 +1,101 @@
+﻿CREATE DATABASE HotelManagement;
+use HotelManagement;
+CREATE TABLE Items (
+	ItemId int PRIMARY KEY NOT NULL, 
+	ItemName nvarchar(100) ,  
+	Price int 
+);
+
+CREATE TABLE Orders(
+	Id int PRIMARY KEY NOT NULL,
+	TableId int NOT NULL
+);
+
+CREATE TABLE Order_Items_Link (
+   ItemId INTEGER NOT NULL,
+   OrderId INTEGER NOT NULL,
+   Quantity INTEGER NOT NULL,
+   PRIMARY KEY (ItemId, OrderId),
+   FOREIGN KEY(ItemId) REFERENCES Items(ItemId),
+   FOREIGN KEY(OrderId) REFERENCES Orders(Id)
+)
+
+CREATE TABLE CusTable(
+	TableId int primary key not null,
+	OrderId int FOREIGN KEY REFERENCES [Orders](Id)
+)
+
+ALTER TABLE Orders ADD CONSTRAINT FK_CusTable 
+FOREIGN KEY (TableId) REFERENCES [CusTable](TableId)
+
+-- /----------/----------/----------/----------/----------
+
+Insert into Items values
+	(1 , 'Dosa' , 70) , 
+	(2 , 'Idly' , 40),
+	(3 , 'Maggi' , 90),
+	(4 , 'Briyani' , 250);
+
+Insert into cusTable values(1,NULL) , (2,NULL) , (3,NULL),(4,NULL)
+
+Insert into Orders values(1,2);
+Insert into Orders values(2,4);
+
+Insert into Order_Items_Link (ItemId , OrderId ,Quantity) values(4,1,2);
+Insert into Order_Items_Link (ItemId , OrderId ,Quantity) values(3,1,2);
+Insert into Order_Items_Link (ItemId , OrderId ,Quantity) values(1,1,6);
+Insert into Order_Items_Link (ItemId , OrderId ,Quantity) values(1,2,6);
+
+-- /----------/----------/----------/----------/----------
+
+select * from Orders;
+select * from CusTable;
+select * from Order_Items_Link
+Select * from Items;
+
+-- /----------/----------/----------/----------/----------
+
+USE HotelManagement;  
+GO  
+CREATE PROCEDURE CreateNewOrder   
+    @TableNo int
+AS   
+	declare @i int;
+	set @i = (select count(*) from Orders) + 1;
+	Insert into Orders(Id , TableId) values(@i,@TableNo);
+	update cusTable  set OrderId = @i where cusTable.TableId = @TableNo;
+    
+GO
+
+EXEC CreateNewOrder 2;
+
+-- /----------/----------/----------/----------/----------
+
+USE HotelManagement;  
+GO  
+CREATE PROCEDURE GetAllOrderedItemsForTable   
+    @TableNo int
+AS   
+	select x.OrderId , i.ItemName , i.Price , x.Quantity 
+	from Order_Items_Link x join Items i 
+	on x.ItemId = i.ItemId 
+	where x.OrderId = (select c.OrderId from CusTable c where c.TableId = @TableNo);
+GO
+
+EXEC GetAllOrderedItemsForTable 4
+
+
+-- /----------/----------/----------/----------/----------
+
+CREATE PROCEDURE GetItemsByOrderId   
+    @OrderId int
+AS   
+	select x.OrderId , i.ItemName , i.Price , x.Quantity 
+	from Order_Items_Link x join Items i 
+	on x.ItemId = i.ItemId 
+	where x.OrderId = @OrderId;
+GO
+
+EXEC GetItemsByOrderId 17
+
+-- /----------/----------/----------/----------/----------
