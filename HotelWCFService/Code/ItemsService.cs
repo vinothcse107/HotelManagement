@@ -26,7 +26,7 @@ namespace HotelWCFService
             }
         }
 
-        public int NewOrderForTable(int TableNo , int WaiterId)
+        public int NewOrderForTable(int TableNo, int WaiterId)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -83,7 +83,6 @@ namespace HotelWCFService
         }
         public DataTable GetItems()
         {
-
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.CommandText = "Select * from Items WHERE ItemActive = 1;";
@@ -94,37 +93,29 @@ namespace HotelWCFService
 
         public bool AddItems(Order_Items_Link order)
         {
-            try
+            using (SqlCommand cmd = new SqlCommand())
             {
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        cmd.Connection = connection;
-                        cmd.CommandText = "dbo.AddItemstoOrder";
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddRange(new SqlParameter[] {
-                                new SqlParameter("@ItemId", order.ItemId) ,
-                                new SqlParameter("@OrderId", order.OderId),
-                                new SqlParameter("@Quantity", order.Quantity)
-                            });
+                cmd.CommandText = "dbo.AddItemstoOrder";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddRange(new SqlParameter[] {
+                        new SqlParameter("@ItemId", order.ItemId) ,
+                        new SqlParameter("@OrderId", order.OderId),
+                        new SqlParameter("@Quantity", order.Quantity)
+                    });
 
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                        SqlDataAdapter adapter = new SqlDataAdapter();
-                        connection.Open();
-                        adapter.InsertCommand = cmd;
-
-
-                        return adapter.InsertCommand.ExecuteNonQuery() <= 0 ? false : true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                new FaultException(ex.Message);
-                return false;
+                return GenCon.NonQuery(cmd);
             }
         }
 
+        public bool DeleteItemsFromCustomerOrder(Order_Items_Link order)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = $"DELETE FROM Order_Items_Link WHERE OrderId = {order.OderId}  AND ItemId = {order.ItemId}";
+                return GenCon.NonQuery(cmd);
+            }
+        }
     }
 }

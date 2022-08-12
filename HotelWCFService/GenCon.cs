@@ -25,12 +25,10 @@ namespace HotelWCFService
                     adapter.Fill(dt);
                     return dt;
                 }
-
             }
             catch (Exception ex)
             {
-                new FaultException(ex.Message);
-                return (dt);
+                throw new FaultException(ex.Message);
             }
 
         }
@@ -45,12 +43,10 @@ namespace HotelWCFService
                     connection.Open();
                     return cmd.ExecuteNonQuery() <= 0 ? false : true;
                 }
-
             }
             catch (Exception ex)
             {
-                new FaultException(ex.Message);
-                return false;
+                throw new FaultException(ex.Message);
             }
         }
     }

@@ -25,12 +25,18 @@ namespace HotelWCFService
 
         [OperationContract]
         DataTable GetRoles();
+
+        [OperationContract]
+        bool DeleteAccount(string username);
     }
     [ServiceContract]
     public interface IHotelService
     {
         [OperationContract]
         DataTable GetTables();
+
+        [OperationContract]
+        bool UpdateKitchenItemsQuantity(int ItemId, int Quantity);
     }
 
     [ServiceContract]
@@ -38,9 +44,12 @@ namespace HotelWCFService
     {
         [OperationContract]
         DataTable GetOrderItemsForTable(int TableNo);
-        
+
         [OperationContract]
         DataTable GetMenu();
+
+        [OperationContract]
+        DataTable GetItems();
 
         [OperationContract]
         int NewOrderForTable(int TableNo, int WaiterId); // Returns Order Nummber
@@ -52,14 +61,12 @@ namespace HotelWCFService
         bool AddItems(Order_Items_Link order);
 
         [OperationContract]
-        DataTable GetItems();
-
+        bool DeleteItemsFromCustomerOrder(Order_Items_Link order);
     }
 
     [ServiceContract]
     public interface IAdminService
     {
-
         [OperationContract]
         bool AddItemsToMenu(Items Item);
         [OperationContract]
@@ -78,6 +85,14 @@ namespace HotelWCFService
                 cmd.CommandText = "select c.TableId as Value , c.TableId as Data from CusTable c;";
                 DataTable dt = GenCon.Executor(cmd);
                 return dt;
+            }
+        }
+        public bool UpdateKitchenItemsQuantity(int ItemId, int Quantity)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = $"UPDATE Items SET TotalQuantity = {Quantity} WHERE ItemId = {ItemId}";
+                return GenCon.NonQuery(cmd);
             }
         }
     }

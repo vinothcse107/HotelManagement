@@ -15,7 +15,7 @@ namespace HotelWCFService
         {
             using (SqlCommand cmd = new SqlCommand())
             {
-                cmd.CommandText = $"SELECT * FROM Users u WHERE  u.Username = '{user.Username}';";
+                cmd.CommandText = $"SELECT TOP 1 * FROM Users u WHERE  u.Username = '{user.Username}';";
                 DataTable dt = GenCon.Executor(cmd);
                 var x = dt.Rows[0][1].ToString();
                 var y = dt.Rows[0][2].ToString();
@@ -59,6 +59,21 @@ namespace HotelWCFService
             {
                 cmd.CommandText = $"SELECT * FROM ROLE";
                 return GenCon.Executor(cmd);
+            }
+        }
+
+        public bool DeleteAccount(string username)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = $"DeleteUser";
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter p = new SqlParameter("username", username);
+                cmd.Parameters.Add(p);
+
+                DataTable dt = GenCon.Executor(cmd);
+                var x = Convert.ToInt32(dt.Rows[0][0]) > 0 ? true : false;
+                return x;
             }
         }
     }
