@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Waiter.master.cs" Inherits="HotelManagement.Waiter.Waiter" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %>Munniyandi Villas </title>
+     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
+         <link rel="stylesheet" href="../CSS/AdminImg.css" type="text/css" />
+    </asp:ContentPlaceHolder>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~../bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body style="overflow-y:hidden">
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+       
+        <div>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
+    <!-- Navbar content -->
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse bg-dark" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="navbar-brand">Munniyandi Villas</li>
+                    <li class="nav-item active">
+                        <a class="nav-link" runat="server"  href="#">Menu<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" runat="server"  href="AddItem">Add Items</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" runat="server"  href="DeleteItem">Delete Item</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" runat="server"  href="AddTable">Add Table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" runat="server"  href="AddWaiter">Add Waiter</a>
+                    </li>
+                    <li class="navbar-brand " style="margin-left:300px">Admin Dashboard</li>
+
+                </ul>
+            </div>
+            </nav>
+            <div class="bac" style="background-image: url('../Images/WaiterPage2.jpg'); min-height: 100%;  background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center center;background-attachment: fixed;">
+           <div class="container body-content "   text-align:"center"  >
+            
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+                </div>
+            </div>
+    </form>
+</body>
+</html>
