@@ -106,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AddItem.aspx" />
-    <Content Include="Admin\AddWaiter.aspx" />
+    <Content Include="Admin\AddUsers.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
     <Content Include="Admin\DeleteItem.aspx" />
     <Content Include="Connected Services\HotelService\HotelManagement.HotelService.ResponseDTO.datasource">
@@ -293,12 +293,12 @@
     <Compile Include="Admin\AddItem.aspx.designer.cs">
       <DependentUpon>AddItem.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\AddWaiter.aspx.cs">
-      <DependentUpon>AddWaiter.aspx</DependentUpon>
+    <Compile Include="Admin\AddUsers.aspx.cs">
+      <DependentUpon>AddUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\AddWaiter.aspx.designer.cs">
-      <DependentUpon>AddWaiter.aspx</DependentUpon>
+    <Compile Include="Admin\AddUsers.aspx.designer.cs">
+      <DependentUpon>AddUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>

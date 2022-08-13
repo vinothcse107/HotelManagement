@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="AddWaiter.aspx.cs" Inherits="HotelManagement.Admin.AddWaiter" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="AddUsers.aspx.cs" Inherits="HotelManagement.Admin.AddWaiter" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div>
@@ -7,6 +7,14 @@
             style=" border-width: medium; margin: auto; width: 470px; text-align: center; height: max-content;">
                 <div id="DivAddItems" style="margin-left: 15px; border-radius:10px; width: 488px;  background-color:aliceblue; color: #000000;">
                     <br /><br />
+                    <asp:DropDownList class="btn btn-secondary" ID="DropDownList1" runat="server">
+                        <asp:ListItem class="text-center" Value=2>Waiter</asp:ListItem>
+                        <asp:ListItem class="text-center " Value=1>Admin</asp:ListItem>
+                            
+                    </asp:DropDownList>
+                    
+     <br />
+     <br />
                     <div class="form-label-group">
                     <asp:Label ID="Label2" class="control-label" runat="server" Text="Username" Font-Size="Larger"></asp:Label>
                     <asp:TextBox ID="username" class="form-control" runat="server" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
