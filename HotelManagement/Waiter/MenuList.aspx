@@ -123,7 +123,7 @@ tr:hover {
             <asp:Label ID="Label3" runat="server" Text="Label"> </asp:Label>
             <asp:TextBox ID="TextBox1" runat="server" Visible="False"></asp:TextBox>--%>
             <br />
-            <asp:repeater id="menulist" runat="server">
+            <asp:repeater id="menulist" runat="server" OnItemCommand="menulist_ItemCommand">
     <headertemplate  >
         <table cellspacing="0" rules="all"  >
             <tr class="text-center">
@@ -149,7 +149,8 @@ tr:hover {
     <itemtemplate>
         <tr>
             <td>
-                <asp:label id="itid" runat="server" text='<%# Eval("ItemId") %>' />
+
+                <asp:label id="itid" runat="server" text='<%# Container.ItemIndex + 1 %>' />
             </td>
             <td>
                 <asp:label id="itname" runat="server" text='<%# Eval("ItemName") %>' />
@@ -161,7 +162,9 @@ tr:hover {
                 <asp:TextBox ID="Quantity" runat="server" Width="50px" type="number"></asp:TextBox>
             </td>
             <td>
-                <button class="btn btn-success">Add</button>
+                <%--<button class="btn btn-success" onclick="">Add</button>--%>
+                <asp:Button ID="AddBtn" runat="server" Text="Button" CommandArgument='<%# Eval("ItemId")  %>' />
+
             </td>
         </tr>
     </itemtemplate>
@@ -170,6 +173,7 @@ tr:hover {
         </table>
     </footertemplate>
 </asp:repeater>
+            <asp:Label ID="Label1" runat="server" Text="Label" style="color:white"></asp:Label>
                              <br />
             <div style="display: flex; justify-content: center">
                  <asp:Button ID="Order" class="btn btn-success" runat="server" Text="Place Order" OnClick="Order_Click" />

@@ -68,11 +68,18 @@ namespace HotelManagement.Pages
             }
             TablesDropDownList.DataBind();
         }
-       
+
         //void sendCategory()
         //{
         //    ItemsService.
         //}
+            protected void menulist_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            var id =Convert.ToInt32(e.CommandArgument);
+            var quants = (menulist.FindControl("Quantity") as TextBox).Text;
+            Label1.Text = quants;
+            
+        }
         protected void Button1_Click(object sender, EventArgs e)
         {
             Category = 1;
@@ -91,9 +98,12 @@ namespace HotelManagement.Pages
             Category = 4;
         }
 
+       
         protected void Order_Click(object sender, EventArgs e)
         {
 
         }
+
+       
     }
 }
