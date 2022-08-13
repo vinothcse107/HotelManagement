@@ -15,6 +15,12 @@
   <wsdl:message name="IHotelService_GetTables_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTablesResponse" />
   </wsdl:message>
+  <wsdl:message name="IHotelService_UpdateKitchenItemsQuantity_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateKitchenItemsQuantity" />
+  </wsdl:message>
+  <wsdl:message name="IHotelService_UpdateKitchenItemsQuantity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateKitchenItemsQuantityResponse" />
+  </wsdl:message>
   <wsdl:message name="IItemsService_GetOrderItemsForTable_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrderItemsForTable" />
   </wsdl:message>
@@ -26,6 +32,18 @@
   </wsdl:message>
   <wsdl:message name="IItemsService_GetMenu_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetItemsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsList" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetItemsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsListResponse" />
   </wsdl:message>
   <wsdl:message name="IItemsService_NewOrderForTable_InputMessage">
     <wsdl:part name="parameters" element="tns:NewOrderForTable" />
@@ -45,11 +63,11 @@
   <wsdl:message name="IItemsService_AddItems_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddItemsResponse" />
   </wsdl:message>
-  <wsdl:message name="IItemsService_GetItems_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetItems" />
+  <wsdl:message name="IItemsService_DeleteItemsFromCustomerOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemsFromCustomerOrder" />
   </wsdl:message>
-  <wsdl:message name="IItemsService_GetItems_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  <wsdl:message name="IItemsService_DeleteItemsFromCustomerOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemsFromCustomerOrderResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_AddItemsToMenu_InputMessage">
     <wsdl:part name="parameters" element="tns:AddItemsToMenu" />
@@ -87,10 +105,20 @@
   <wsdl:message name="IAccountService_GetRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRolesResponse" />
   </wsdl:message>
+  <wsdl:message name="IAccountService_DeleteAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAccount" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_DeleteAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAccountResponse" />
+  </wsdl:message>
   <wsdl:portType name="IHotelService">
     <wsdl:operation name="GetTables">
       <wsdl:input wsaw:Action="http://tempuri.org/IHotelService/GetTables" message="tns:IHotelService_GetTables_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHotelService/GetTablesResponse" message="tns:IHotelService_GetTables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKitchenItemsQuantity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHotelService/UpdateKitchenItemsQuantity" message="tns:IHotelService_UpdateKitchenItemsQuantity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHotelService/UpdateKitchenItemsQuantityResponse" message="tns:IHotelService_UpdateKitchenItemsQuantity_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IItemsService">
@@ -101,6 +129,14 @@
     <wsdl:operation name="GetMenu">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetMenu" message="tns:IItemsService_GetMenu_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetMenuResponse" message="tns:IItemsService_GetMenu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItems" message="tns:IItemsService_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsResponse" message="tns:IItemsService_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItemsList" message="tns:IItemsService_GetItemsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsListResponse" message="tns:IItemsService_GetItemsList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="NewOrderForTable">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/NewOrderForTable" message="tns:IItemsService_NewOrderForTable_InputMessage" />
@@ -114,9 +150,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/AddItems" message="tns:IItemsService_AddItems_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/AddItemsResponse" message="tns:IItemsService_AddItems_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetItems">
-      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItems" message="tns:IItemsService_GetItems_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsResponse" message="tns:IItemsService_GetItems_OutputMessage" />
+    <wsdl:operation name="DeleteItemsFromCustomerOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/DeleteItemsFromCustomerOrder" message="tns:IItemsService_DeleteItemsFromCustomerOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/DeleteItemsFromCustomerOrderResponse" message="tns:IItemsService_DeleteItemsFromCustomerOrder_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IAdminService">
@@ -146,11 +182,24 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/GetRoles" message="tns:IAccountService_GetRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/GetRolesResponse" message="tns:IAccountService_GetRoles_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/DeleteAccount" message="tns:IAccountService_DeleteAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/DeleteAccountResponse" message="tns:IAccountService_DeleteAccount_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IHotelService" type="tns:IHotelService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetTables">
       <soap:operation soapAction="http://tempuri.org/IHotelService/GetTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKitchenItemsQuantity">
+      <soap:operation soapAction="http://tempuri.org/IHotelService/UpdateKitchenItemsQuantity" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -172,6 +221,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetMenu">
       <soap:operation soapAction="http://tempuri.org/IItemsService/GetMenu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsList">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/GetItemsList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -206,8 +273,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetItems">
-      <soap:operation soapAction="http://tempuri.org/IItemsService/GetItems" style="document" />
+    <wsdl:operation name="DeleteItemsFromCustomerOrder">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/DeleteItemsFromCustomerOrder" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -268,6 +335,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRoles">
       <soap:operation soapAction="http://tempuri.org/IAccountService/GetRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAccount">
+      <soap:operation soapAction="http://tempuri.org/IAccountService/DeleteAccount" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -26,6 +26,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UpdateKitchenItemsQuantity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ItemId" type="xs:int" />
+        <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateKitchenItemsQuantityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateKitchenItemsQuantityResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetOrderItemsForTable">
     <xs:complexType>
       <xs:sequence>
@@ -76,6 +91,42 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetItems">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetItemsResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+              <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemsList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="GetItemsListResult" nillable="true" type="q1:ArrayOfItems" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="NewOrderForTable">
     <xs:complexType>
       <xs:sequence>
@@ -108,7 +159,7 @@
   <xs:element name="AddItems">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="order" nillable="true" type="q1:Order_Items_Link" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="order" nillable="true" type="q2:Order_Items_Link" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -119,34 +170,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetItems">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetItemsResponse">
+  <xs:element name="DeleteItemsFromCustomerOrder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetItemsResult" nillable="true">
-          <xs:complexType>
-            <xs:annotation>
-              <xs:appinfo>
-                <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
-              </xs:appinfo>
-            </xs:annotation>
-            <xs:sequence>
-              <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-              <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="order" nillable="true" type="q3:Order_Items_Link" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteItemsFromCustomerOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteItemsFromCustomerOrderResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddItemsToMenu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="Item" nillable="true" type="q2:Items" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="Item" nillable="true" type="q4:Items" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -186,21 +227,21 @@
   <xs:element name="Login">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="user" nillable="true" type="q3:LoginDTO" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="user" nillable="true" type="q5:LoginDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="LoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="LoginResult" nillable="true" type="q4:ResponseDTO" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="LoginResult" nillable="true" type="q6:ResponseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddAccount">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="user" nillable="true" type="q5:Users" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="user" nillable="true" type="q7:Users" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -232,6 +273,20 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAccount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAccountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteAccountResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

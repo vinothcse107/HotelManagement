@@ -91,7 +91,86 @@ namespace HotelWCFService
             }
         }
 
-        public bool AddItems(Order_Items_Link order)
+        public List<Items> GetItemsList()
+        {
+            try
+            {
+                List<Items> i = new List<Items> { };
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.CommandText = $"Select * from Items;";
+                        cmd.Connection = connection;
+                        connection.Open();
+
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                Items dto = new Items()
+                                {
+                                    ItemId = Convert.ToInt32(rdr["ItemId"]),
+                                    ItemName = rdr["ItemName"].ToString(),
+                                    Price = Convert.ToInt32(rdr["Price"]),
+                                    TotalQuantity = Convert.ToInt32(rdr["TotalQuantity"]),
+                                    ItemActive = Convert.ToInt32(rdr["ItemActive"]),
+                                    FoodCategoryId = Convert.ToInt32(rdr["FoodCategoryId"])
+                                };
+                                i.Add(dto);
+                            };
+                        }
+                    }
+                }
+                return i;
+
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+
+        }
+            public List<Items> GetMenuByCategoryId(int CategoryId)
+            {
+                try
+                {
+                    List<Items> i = new List<Items> { };
+                    using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+                    {
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.CommandText = $"Select * from Items i where i.FoodCategoryId = {CategoryId};";
+                            cmd.Connection = connection;
+                            connection.Open();
+                            using (SqlDataReader rdr = cmd.ExecuteReader())
+                            {
+                                while (rdr.Read())
+                                {
+                                    Items dto = new Items()
+                                    {
+                                        ItemId = Convert.ToInt32(rdr["ItemId"]),
+                                        ItemName = rdr["ItemName"].ToString(),
+                                        Price = Convert.ToInt32(rdr["Price"]),
+                                        TotalQuantity = Convert.ToInt32(rdr["TotalQuantity"]),
+                                        ItemActive = Convert.ToInt32(rdr["ItemActive"]),
+                                        FoodCategoryId = Convert.ToInt32(rdr["FoodCategoryId"]),
+                                    };
+                                    i.Add(dto);
+                                };
+                            }
+                        }
+                    }
+                    return i;
+
+                }
+                catch (Exception ex)
+                {
+                    new FaultException(ex.Message);
+                    return (List<Items>)Enumerable.Empty<int>();
+                }
+            }
+            public bool AddItems(Order_Items_Link order)
         {
             using (SqlCommand cmd = new SqlCommand())
             {

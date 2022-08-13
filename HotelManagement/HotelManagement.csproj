@@ -113,6 +113,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Admin\Admin.Master" />
+    <Content Include="Connected Services\HotelService\HotelManagement.HotelService.Items.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\HotelService\HotelService.disco" />
     <None Include="Connected Services\HotelService\configuration91.svcinfo" />
     <None Include="Connected Services\HotelService\configuration.svcinfo" />
@@ -138,7 +141,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Login.aspx" />
-    <Content Include="Pages\MenuList.aspx" />
+    <Content Include="Waiter\GenerateBill.aspx" />
+    <Content Include="Waiter\MenuList.aspx" />
     <Content Include="Pages\Orders.aspx" />
     <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -352,11 +356,18 @@
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MenuList.aspx.cs">
+    <Compile Include="Waiter\GenerateBill.aspx.cs">
+      <DependentUpon>GenerateBill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Waiter\GenerateBill.aspx.designer.cs">
+      <DependentUpon>GenerateBill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Waiter\MenuList.aspx.cs">
       <DependentUpon>MenuList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\MenuList.aspx.designer.cs">
+    <Compile Include="Waiter\MenuList.aspx.designer.cs">
       <DependentUpon>MenuList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Orders.aspx.cs">
