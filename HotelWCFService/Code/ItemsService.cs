@@ -21,11 +21,10 @@ namespace HotelWCFService
                 SqlParameter p = new SqlParameter("@TableNo", TableNo);
                 cmd.Parameters.Add(p);
 
-                DataTable dt = GenCon.Executor(cmd); // Calling a Common Executor method !
+                DataTable dt = GenCon.Executor(cmd);
                 return dt;
             }
         }
-
         public int NewOrderForTable(int TableNo, int WaiterId)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -51,8 +50,6 @@ namespace HotelWCFService
                     return OrderId;
             }
         }
-
-
         public int ExistingOrderForTable(int TableNo)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -67,10 +64,9 @@ namespace HotelWCFService
                 }
                 else
                     return x;
-
             }
         }
-
+        // Used in Admin Delete Menu Page
         public DataTable GetMenu()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -79,7 +75,15 @@ namespace HotelWCFService
                 DataTable dt = GenCon.Executor(cmd);
                 return dt;
             }
-
+        }
+        public DataTable GetCategory()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = "select * from FoodCategory;";
+                DataTable dt = GenCon.Executor(cmd);
+                return dt;
+            }
         }
         public DataTable GetItems()
         {
@@ -90,7 +94,6 @@ namespace HotelWCFService
                 return dt;
             }
         }
-
         public List<Items> GetItemsList()
         {
             try
@@ -100,7 +103,7 @@ namespace HotelWCFService
                 {
                     using (SqlCommand cmd = new SqlCommand())
                     {
-                        cmd.CommandText = $"Select * from Items;";
+                        cmd.CommandText = $"Select * from Items WHERE ItemActive = 1;";
                         cmd.Connection = connection;
                         connection.Open();
 
@@ -131,46 +134,46 @@ namespace HotelWCFService
             }
 
         }
-            public List<Items> GetMenuByCategoryId(int CategoryId)
+        public List<Items> GetMenuByCategoryId(int CategoryId)
+        {
+            try
             {
-                try
+                List<Items> i = new List<Items> { };
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
                 {
-                    List<Items> i = new List<Items> { };
-                    using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+                    using (SqlCommand cmd = new SqlCommand())
                     {
-                        using (SqlCommand cmd = new SqlCommand())
+                        cmd.CommandText = $"Select * from Items i where i.FoodCategoryId = {CategoryId} WHERE ItemActive = 1;";
+                        cmd.Connection = connection;
+                        connection.Open();
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
                         {
-                            cmd.CommandText = $"Select * from Items i where i.FoodCategoryId = {CategoryId};";
-                            cmd.Connection = connection;
-                            connection.Open();
-                            using (SqlDataReader rdr = cmd.ExecuteReader())
+                            while (rdr.Read())
                             {
-                                while (rdr.Read())
+                                Items dto = new Items()
                                 {
-                                    Items dto = new Items()
-                                    {
-                                        ItemId = Convert.ToInt32(rdr["ItemId"]),
-                                        ItemName = rdr["ItemName"].ToString(),
-                                        Price = Convert.ToInt32(rdr["Price"]),
-                                        TotalQuantity = Convert.ToInt32(rdr["TotalQuantity"]),
-                                        ItemActive = Convert.ToInt32(rdr["ItemActive"]),
-                                        FoodCategoryId = Convert.ToInt32(rdr["FoodCategoryId"]),
-                                    };
-                                    i.Add(dto);
+                                    ItemId = Convert.ToInt32(rdr["ItemId"]),
+                                    ItemName = rdr["ItemName"].ToString(),
+                                    Price = Convert.ToInt32(rdr["Price"]),
+                                    TotalQuantity = Convert.ToInt32(rdr["TotalQuantity"]),
+                                    ItemActive = Convert.ToInt32(rdr["ItemActive"]),
+                                    FoodCategoryId = Convert.ToInt32(rdr["FoodCategoryId"]),
                                 };
-                            }
+                                i.Add(dto);
+                            };
                         }
                     }
-                    return i;
+                }
+                return i;
 
-                }
-                catch (Exception ex)
-                {
-                    new FaultException(ex.Message);
-                    return (List<Items>)Enumerable.Empty<int>();
-                }
             }
-            public bool AddItems(Order_Items_Link order)
+            catch (Exception ex)
+            {
+                new FaultException(ex.Message);
+                return (List<Items>)Enumerable.Empty<int>();
+            }
+        }
+        public bool AddItems(Order_Items_Link order)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -187,7 +190,6 @@ namespace HotelWCFService
                 return GenCon.NonQuery(cmd);
             }
         }
-
         public bool DeleteItemsFromCustomerOrder(Order_Items_Link order)
         {
             using (SqlCommand cmd = new SqlCommand())

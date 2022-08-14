@@ -11,26 +11,36 @@ namespace HotelManagement.Admin
 {
     public partial class DeleteItem : System.Web.UI.Page
     {
-        static ItemsServiceClient ItemsService = new ItemsServiceClient();
+        ItemsServiceClient ItemsService = new ItemsServiceClient();
+        AdminServiceClient AdminService = new AdminServiceClient();
 
         protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                RefreshGrid(sender, e);
+            }
+        }
+        protected void RefreshGrid(object sender, EventArgs e)
         {
             DataTable dt = ItemsService.GetMenu();
             GridView1.DataSource = dt.DefaultView;
             GridView1.DataBind();
         }
-
+        protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int x = Convert.ToInt32(e.Values[0]);
+            var t = AdminService.DeleteItemsFromMenu(x) ?
+                            "Item Removed" : "Error !! item Not Removed";
+            Response.Write(t);
+            RefreshGrid(sender, e);
+        }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridView1.EditIndex = e.NewEditIndex;
-            
         }
-
-        protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-        }
-         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

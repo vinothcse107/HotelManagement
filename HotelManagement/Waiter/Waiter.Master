@@ -54,28 +54,22 @@
                             <a class="nav-link" runat="server" href="MenuList">Menu<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" runat="server" href="AddItem">Add Items</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" runat="server" href="DeleteItem">Generate Bill</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" runat="server" href="AddTable">Order List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" runat="server" href="AddWaiter">Add Waiter</a>
                         </li>
                         <li class="navbar-brand " style="margin-left: 300px">Waiter Dashboard</li>
 
                     </ul>
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile
-                </a>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Name</a>
-                            <a class="dropdown-item" href="#">Admin</a>
+                            <%--'<%#Eval(Session["userid"].ToString())%>'--%>
+                            <asp:Label class="dropdown-item" runat="server" Text="Username" />
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Log Out</a>
+                            <asp:Button class="dropdown-item" ID="Logout" runat="server" OnClick="Logout_Click" Text="Log Out" />
                         </div>
                     </div>
                 </div>

@@ -667,7 +667,13 @@ namespace HotelManagement.HotelService {
         private string messageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string roleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int userIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string usernameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -706,6 +712,19 @@ namespace HotelManagement.HotelService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string role {
+            get {
+                return this.roleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.roleField, value) != true)) {
+                    this.roleField = value;
+                    this.RaisePropertyChanged("role");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int userId {
             get {
                 return this.userIdField;
@@ -714,6 +733,19 @@ namespace HotelManagement.HotelService {
                 if ((this.userIdField.Equals(value) != true)) {
                     this.userIdField = value;
                     this.RaisePropertyChanged("userId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.usernameField, value) != true)) {
+                    this.usernameField = value;
+                    this.RaisePropertyChanged("username");
                 }
             }
         }
@@ -811,6 +843,12 @@ namespace HotelManagement.HotelService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetItems", ReplyAction="http://tempuri.org/IItemsService/GetItemsResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> GetItemsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetCategory", ReplyAction="http://tempuri.org/IItemsService/GetCategoryResponse")]
+        System.Data.DataTable GetCategory();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetCategory", ReplyAction="http://tempuri.org/IItemsService/GetCategoryResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetCategoryAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetItemsList", ReplyAction="http://tempuri.org/IItemsService/GetItemsListResponse")]
         HotelManagement.HotelService.Items[] GetItemsList();
         
@@ -897,6 +935,14 @@ namespace HotelManagement.HotelService {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> GetItemsAsync() {
             return base.Channel.GetItemsAsync();
+        }
+        
+        public System.Data.DataTable GetCategory() {
+            return base.Channel.GetCategory();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetCategoryAsync() {
+            return base.Channel.GetCategoryAsync();
         }
         
         public HotelManagement.HotelService.Items[] GetItemsList() {

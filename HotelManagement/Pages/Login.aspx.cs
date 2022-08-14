@@ -26,8 +26,12 @@ namespace HotelManagement
             ResponseDTO rt = ac.Login(loginDTO);
             if (rt.access)
             {
-                Session["UserId"] = rt.userId;
-                Response.Redirect("/Pages/BillingList.aspx");
+                Session["userid"] = rt.userId;
+                Session["username"] = rt.username;
+                if (rt.role.Equals("Admin"))
+                    Response.Redirect("~/Admin/AddItem.aspx");
+                else if (rt.role.Equals("Waiter"))
+                    Response.Redirect("~/Waiter/MenuList.aspx");
             }
             else
                 ResponseLabel.Text = rt.message.ToString();

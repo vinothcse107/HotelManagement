@@ -11,25 +11,49 @@ namespace HotelWCFService
 {
     public partial class HotelService
     {
+        public enum roles
+        {
+            Admin = 1,
+            Waiter = 2,
+            User = 3
+        }
         public ResponseDTO Login(LoginDTO user)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.CommandText = $"SELECT TOP 1 * FROM Users u WHERE  u.Username = '{user.Username}';";
                 DataTable dt = GenCon.Executor(cmd);
-                var x = dt.Rows[0][1].ToString();
-                var y = dt.Rows[0][2].ToString();
-                var Id = Convert.ToInt32(dt.Rows[0][0]);
-
-                if (user.Username.Equals(x) && user.Password.Equals(y))
+                if (dt.Rows.Count > 0)
                 {
-                    ResponseDTO rt = new ResponseDTO()
+                    var id = Convert.ToInt32(dt.Rows[0][0]);
+                    var usr = dt.Rows[0][1].ToString().ToLower();
+                    var pwd = dt.Rows[0][2].ToString();
+                    var role = ((roles)Convert.ToInt32(dt.Rows[0][4])).ToString();
+
+
+                    if (user.Username.Equals(usr) && user.Password.Equals(pwd))
                     {
-                        userId = Id,
-                        access = true,
-                        message = "Access Allowed"
-                    };
-                    return rt;
+                        ResponseDTO rt = new ResponseDTO()
+                        {
+                            userId = id,
+                            username = usr,
+                            role = role,
+                            access = true,
+                            message = "Access Allowed"
+
+                        };
+                        return rt;
+                    }
+                    else
+                    {
+                        ResponseDTO rt = new ResponseDTO()
+                        {
+                            userId = -1,
+                            access = false,
+                            message = "Invalid Password"
+                        };
+                        return rt;
+                    }
                 }
                 else
                 {
@@ -37,7 +61,7 @@ namespace HotelWCFService
                     {
                         userId = -1,
                         access = false,
-                        message = "Invalid Access"
+                        message = "Invalid Username | Password"
                     };
                     return rt;
                 }

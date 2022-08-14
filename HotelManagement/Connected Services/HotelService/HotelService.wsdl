@@ -39,6 +39,12 @@
   <wsdl:message name="IItemsService_GetItems_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetItemsResponse" />
   </wsdl:message>
+  <wsdl:message name="IItemsService_GetCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategory" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryResponse" />
+  </wsdl:message>
   <wsdl:message name="IItemsService_GetItemsList_InputMessage">
     <wsdl:part name="parameters" element="tns:GetItemsList" />
   </wsdl:message>
@@ -140,6 +146,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItems" message="tns:IItemsService_GetItems_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsResponse" message="tns:IItemsService_GetItems_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetCategory" message="tns:IItemsService_GetCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetCategoryResponse" message="tns:IItemsService_GetCategory_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetItemsList">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItemsList" message="tns:IItemsService_GetItemsList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsListResponse" message="tns:IItemsService_GetItemsList_OutputMessage" />
@@ -240,6 +250,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetItems">
       <soap:operation soapAction="http://tempuri.org/IItemsService/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/GetCategory" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

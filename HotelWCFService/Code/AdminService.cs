@@ -18,6 +18,8 @@ namespace HotelWCFService
                 cmd.CommandText = "dbo.AddItemToMenu";
                 cmd.Parameters.Add(new SqlParameter("@ItemName", Item.ItemName));
                 cmd.Parameters.Add(new SqlParameter("@Price", Item.Price));
+                cmd.Parameters.Add(new SqlParameter("@CategoryId", Item.FoodCategoryId));
+
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 x = GenCon.NonQuery(cmd);

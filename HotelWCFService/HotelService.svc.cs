@@ -50,6 +50,8 @@ namespace HotelWCFService
 
         [OperationContract]
         DataTable GetItems();
+        [OperationContract]
+        DataTable GetCategory();
 
         [OperationContract]
         List<Items> GetItemsList();

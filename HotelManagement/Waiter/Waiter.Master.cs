@@ -13,5 +13,11 @@ namespace HotelManagement.Waiter
         {
 
         }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("~/Pages/Login");
+        }
     }
 }
