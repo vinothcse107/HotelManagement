@@ -19,19 +19,27 @@ namespace HotelManagement.Pages
         static int Category = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (!IsPostBack)
+            var ses = (SessionDTO)Session["user"];
+            if (!(ses != null && ses.role.Equals("waiter") && ses.sid != null))
             {
-                DropDownList(); //Add Dynamic Table Values to DropDown
-
-                // Bind Items To Repeter List
-                List<Items> items = ItemsService.GetMenuByCategoryId(Category).ToList();
-                menulist.DataSource = items;
-                menulist.DataBind();
-
-                // Get the Current Active Order For Table Add Set the Order Id 
-                GetCurrentOrderId(sender, e);
+                Response.Redirect("~/Pages/Login.aspx");
             }
+            else
+            {
+                if (!IsPostBack)
+                {
+                    DropDownList(); //Add Dynamic Table Values to DropDown
+
+                    // Bind Items To Repeter List
+                    List<Items> items = ItemsService.GetMenuByCategoryId(Category).ToList();
+                    menulist.DataSource = items;
+                    menulist.DataBind();
+
+                    // Get the Current Active Order For Table Add Set the Order Id 
+                    GetCurrentOrderId(sender, e);
+                }
+            }
+
         }
 
         protected void GetCurrentOrderId(object sender, EventArgs e)
@@ -94,9 +102,10 @@ namespace HotelManagement.Pages
         {
             try
             {
+                var ses = (SessionDTO)Session["user"];
                 int x = ItemsService.NewOrderForTable(
                                 Convert.ToInt32(TablesDropDownList.SelectedItem.Text),
-                                Convert.ToInt32(Session["UserId"]));
+                                Convert.ToInt32(ses.userid));
                 Session["OrderNo"] = x;
                 Label2.Text = "Your Order No is : " + x.ToString();
             }

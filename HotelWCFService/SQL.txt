@@ -157,8 +157,31 @@ IF @username IN (SELECT TOP 1 u.Username FROM Users u WHERE  u.Username = @usern
 else
 	BEGIN SELECT 0; END
 GO
+-- //////////////---------///////////
 
+CREATE PROCEDURE OrdersPlacedByWaiter
+(
+	@WaiterId int
+)
+AS 
+-- Waiter Side Page (All Order Placed By Waiter)
+	SELECT o.OrderId, i.ItemName , o.Quantity , i.Price 
+	from Order_Items_Link o JOIN Items i 
+	on o.ItemId = i.ItemId where o.OrderId IN (SELECT x.Id from Orders x where x.WaiterId = @WaiterId)
+	order by OrderId;
+GO
 
+-- //////////////---------///////////
+
+CREATE PROCEDURE HotalTotalRevenue
+AS 
+-- Admin Side Total billing Revenue
+	SELECT SUM(i.Price * o.Quantity) as Revenue
+	from Order_Items_Link o JOIN Items i 
+	on o.ItemId = i.ItemId where o.OrderId IN (SELECT x.Id from Orders x)
+GO
+
+-- //////////////---------///////////
 
 Create procedure Starter
 AS
@@ -206,5 +229,7 @@ EXEC AddItemstoOrder 2, 5 ,8
 EXEC GetAllOrderedItemsForTable 1
 EXEC DeleteItem 2;
 EXEC dbo.AddItemToMenu Dosa , 100
+EXEC OrdersPlacedByWaiter 5
+EXEC HotalTotalRevenue
 
 -- /----------/----------/----------/----------/----------

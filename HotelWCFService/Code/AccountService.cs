@@ -13,9 +13,9 @@ namespace HotelWCFService
     {
         public enum roles
         {
-            Admin = 1,
-            Waiter = 2,
-            User = 3
+            admin = 1,
+            waiter = 2,
+            user = 3
         }
         public ResponseDTO Login(LoginDTO user)
         {

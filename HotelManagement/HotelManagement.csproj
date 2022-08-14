@@ -348,6 +348,7 @@
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SessionDTO.cs" />
     <Compile Include="Waiter\GenerateBill.aspx.cs">
       <DependentUpon>GenerateBill.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

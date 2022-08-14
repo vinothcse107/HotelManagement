@@ -15,10 +15,18 @@ namespace HotelManagement.Admin
         ItemsServiceClient items = new ItemsServiceClient();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            var ses = (SessionDTO)Session["user"];
+            if (ses != null && ses.role.Equals("admin") && ses.sid != null)
             {
-                CategoryDropDownList();
+                if (!IsPostBack)
+                {
+                    CategoryDropDownList();
+                }
             }
+            else
+                Response.Redirect("~/Pages/Login.aspx");
+
+
         }
         private void CategoryDropDownList()
         {

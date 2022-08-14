@@ -16,10 +16,14 @@ namespace HotelManagement.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            var ses = (SessionDTO)Session["user"];
+            if (ses != null && ses.role.Equals("admin") && ses.sid != null)
             {
-                RefreshGrid(sender, e);
+                if (!IsPostBack)
+                    RefreshGrid(sender, e);
             }
+            else
+                Response.Redirect("~/Pages/Login.aspx");
         }
         protected void RefreshGrid(object sender, EventArgs e)
         {
