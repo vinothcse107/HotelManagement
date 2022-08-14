@@ -50,9 +50,12 @@ namespace HotelWCFService
 
         [OperationContract]
         DataTable GetItems();
-        
+
         [OperationContract]
         List<Items> GetItemsList();
+
+        [OperationContract]
+        List<Items> GetMenuByCategoryId(int CategoryId);
 
         [OperationContract]
         int NewOrderForTable(int TableNo, int WaiterId); // Returns Order Nummber

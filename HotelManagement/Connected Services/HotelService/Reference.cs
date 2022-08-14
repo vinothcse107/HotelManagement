@@ -817,6 +817,12 @@ namespace HotelManagement.HotelService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetItemsList", ReplyAction="http://tempuri.org/IItemsService/GetItemsListResponse")]
         System.Threading.Tasks.Task<HotelManagement.HotelService.Items[]> GetItemsListAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetMenuByCategoryId", ReplyAction="http://tempuri.org/IItemsService/GetMenuByCategoryIdResponse")]
+        HotelManagement.HotelService.Items[] GetMenuByCategoryId(int CategoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetMenuByCategoryId", ReplyAction="http://tempuri.org/IItemsService/GetMenuByCategoryIdResponse")]
+        System.Threading.Tasks.Task<HotelManagement.HotelService.Items[]> GetMenuByCategoryIdAsync(int CategoryId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/NewOrderForTable", ReplyAction="http://tempuri.org/IItemsService/NewOrderForTableResponse")]
         int NewOrderForTable(int TableNo, int WaiterId);
         
@@ -899,6 +905,14 @@ namespace HotelManagement.HotelService {
         
         public System.Threading.Tasks.Task<HotelManagement.HotelService.Items[]> GetItemsListAsync() {
             return base.Channel.GetItemsListAsync();
+        }
+        
+        public HotelManagement.HotelService.Items[] GetMenuByCategoryId(int CategoryId) {
+            return base.Channel.GetMenuByCategoryId(CategoryId);
+        }
+        
+        public System.Threading.Tasks.Task<HotelManagement.HotelService.Items[]> GetMenuByCategoryIdAsync(int CategoryId) {
+            return base.Channel.GetMenuByCategoryIdAsync(CategoryId);
         }
         
         public int NewOrderForTable(int TableNo, int WaiterId) {

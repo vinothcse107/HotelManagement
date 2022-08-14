@@ -127,6 +127,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMenuByCategoryId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenuByCategoryIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="GetMenuByCategoryIdResult" nillable="true" type="q2:ArrayOfItems" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="NewOrderForTable">
     <xs:complexType>
       <xs:sequence>
@@ -159,7 +173,7 @@
   <xs:element name="AddItems">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="order" nillable="true" type="q2:Order_Items_Link" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="order" nillable="true" type="q3:Order_Items_Link" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -173,7 +187,7 @@
   <xs:element name="DeleteItemsFromCustomerOrder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="order" nillable="true" type="q3:Order_Items_Link" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="order" nillable="true" type="q4:Order_Items_Link" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -187,7 +201,7 @@
   <xs:element name="AddItemsToMenu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="Item" nillable="true" type="q4:Items" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="Item" nillable="true" type="q5:Items" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -227,21 +241,21 @@
   <xs:element name="Login">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="user" nillable="true" type="q5:LoginDTO" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="user" nillable="true" type="q6:LoginDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="LoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="LoginResult" nillable="true" type="q6:ResponseDTO" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="LoginResult" nillable="true" type="q7:ResponseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddAccount">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="user" nillable="true" type="q7:Users" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" minOccurs="0" name="user" nillable="true" type="q8:Users" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

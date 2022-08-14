@@ -45,6 +45,12 @@
   <wsdl:message name="IItemsService_GetItemsList_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetItemsListResponse" />
   </wsdl:message>
+  <wsdl:message name="IItemsService_GetMenuByCategoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMenuByCategoryId" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetMenuByCategoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMenuByCategoryIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IItemsService_NewOrderForTable_InputMessage">
     <wsdl:part name="parameters" element="tns:NewOrderForTable" />
   </wsdl:message>
@@ -137,6 +143,10 @@
     <wsdl:operation name="GetItemsList">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItemsList" message="tns:IItemsService_GetItemsList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsListResponse" message="tns:IItemsService_GetItemsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuByCategoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetMenuByCategoryId" message="tns:IItemsService_GetMenuByCategoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetMenuByCategoryIdResponse" message="tns:IItemsService_GetMenuByCategoryId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="NewOrderForTable">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/NewOrderForTable" message="tns:IItemsService_NewOrderForTable_InputMessage" />
@@ -239,6 +249,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetItemsList">
       <soap:operation soapAction="http://tempuri.org/IItemsService/GetItemsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuByCategoryId">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/GetMenuByCategoryId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
