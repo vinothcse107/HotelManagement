@@ -88,8 +88,6 @@
     <div>
         <br />
         <br />
-        <br />
-        <br />
         <div class="m-2" id="Outer">
             <br />
             <div style="display: flex; justify-content: center">

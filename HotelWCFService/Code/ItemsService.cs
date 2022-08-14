@@ -143,7 +143,7 @@ namespace HotelWCFService
                 {
                     using (SqlCommand cmd = new SqlCommand())
                     {
-                        cmd.CommandText = $"Select * from Items i where i.FoodCategoryId = {CategoryId} WHERE ItemActive = 1;";
+                        cmd.CommandText = $"Select * from Items i where i.FoodCategoryId = {CategoryId} AND i.ItemActive = 1;";
                         cmd.Connection = connection;
                         connection.Open();
                         using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -169,8 +169,7 @@ namespace HotelWCFService
             }
             catch (Exception ex)
             {
-                new FaultException(ex.Message);
-                return (List<Items>)Enumerable.Empty<int>();
+                throw new FaultException(ex.Message);
             }
         }
         public bool AddItems(Order_Items_Link order)
