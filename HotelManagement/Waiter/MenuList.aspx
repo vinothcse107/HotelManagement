@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=B612&family=Copse&family=Lato&display=swap');
+
         table {
             border-spacing: unset;
             border-collapse: collapse;
@@ -17,6 +19,8 @@
 
             table * {
                 position: relative;
+                font-family: 'Lato', sans-serif;
+                font-weight: 500
             }
 
             table td, table th {
@@ -26,14 +30,13 @@
             table th {
                 height: 60px;
                 background: #36304a;
+                /*font-family: 'Aboreto', cursive;*/
+                font-family: 'B612', sans-serif;
             }
 
             table tr {
                 height: 50px;
             }
-
-                table tr:last-child {
-                }
 
             table td.Quantity {
                 width: max-content;
@@ -143,7 +146,7 @@
                             <asp:Label ID="itprice" runat="server" Text='<%# Eval("Price") %>' />
                         </td>
                         <td class="Quantity">
-                            <asp:TextBox ID="Quantity" runat="server" Width="50px" Text="0" type="number"></asp:TextBox>
+                            <asp:TextBox ID="Quantity" runat="server" Width="50px" required min="0" max="500" Text="0" type="number"></asp:TextBox>
                         </td>
                         <td>
                             <asp:Button ID="AddBtn" runat="server" class="btn btn-success" Text="Add" OnClick="Add_Click" CommandArgument='<%# Eval("ItemId")  %>' />

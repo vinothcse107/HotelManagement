@@ -26,10 +26,7 @@ namespace HotelManagement.Admin
             var pwd = password.Text.Trim().ToString();
             var ph = phone.Text.Trim().ToString();
 
-            if (usr != "" && pwd != "" && ph != ""
-                && usr.Length >= 6 && usr.Length <= 10
-                && pwd.Length >= 6 && pwd.Length <= 16
-                && ph.Length == 10)
+            if (usr != "" && pwd != "" && ph != "")
             {
                 AccountServiceClient accountService = new AccountServiceClient();
                 Users user = new Users()

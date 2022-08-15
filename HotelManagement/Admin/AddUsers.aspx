@@ -22,21 +22,21 @@
                 <br />
                 <div class="form-label-group">
                     <asp:Label ID="Label2" class="control-label" runat="server" Text="Username" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="username" class="form-control" runat="server" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
+                    <asp:TextBox ID="username" class="form-control" runat="server" required Minlength="8" MaxLength="16" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
                 </div>
 
                 <br />
 
                 <div class="form-label-group">
                     <asp:Label ID="Label1" class="control-label" runat="server" Text="Password" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="password" type="password" class="form-control" runat="server" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
+                    <asp:TextBox ID="password" type="password" class="form-control" required Minlength="8" MaxLength="16" runat="server" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
                 </div>
 
                 <br />
 
                 <div class="form-label-group">
                     <asp:Label ID="Label3" class="control-label" runat="server" Text="Phone" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="phone" type="number" class="form-control" runat="server" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
+                    <asp:TextBox ID="phone" type="number" class="form-control" runat="server" required Minlength="10" MaxLength="10" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
                 </div>
 
 

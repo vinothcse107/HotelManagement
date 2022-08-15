@@ -12,14 +12,14 @@
                 <br />
                 <div class="form-label-group">
                     <asp:Label class="control-label" runat="server" Text="ItemName" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="ItemName" class="form-control" runat="server" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
+                    <asp:TextBox ID="ItemName" class="form-control" runat="server" required Minlength="5" MaxLength="30" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
                 </div>
 
                 <br />
 
                 <div class="form-label-group">
                     <asp:Label class="control-label" runat="server" Text="Price" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="Price" class="form-control" runat="server" Height="30px" type="number" Width="353px" Style="margin: auto"></asp:TextBox>
+                    <asp:TextBox ID="Price" class="form-control" runat="server" min="1" max="1000" Height="30px" type="number" Width="353px" Style="margin: auto"></asp:TextBox>
                 </div>
 
                 <br />

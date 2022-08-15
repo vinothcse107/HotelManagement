@@ -16,6 +16,9 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Lato&family=Libre+Barcode+39&family=Pacifico&display=swap');
+    </style>
 
 </head>
 <body style="overflow-y: hidden">
@@ -49,7 +52,7 @@
 
                 <div class="collapse navbar-collapse bg-dark" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="navbar-brand">Munniyandi Villas</li>
+                        <li class="navbar-brand" style="font-family: 'Aboreto', cursive; font-weight: 900">Munniyandi Villas</li>
                         <li class="nav-item active">
                             <a class="nav-link" runat="server" href="MenuList">Menu<span class="sr-only">(current)</span></a>
                         </li>
