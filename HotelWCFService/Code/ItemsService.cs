@@ -26,48 +26,6 @@ namespace HotelWCFService
                 return dt;
             }
         }
-        public List<OrderListDTO> GetOrderItemsForTableList(int  TableNo)
-        {
-            try
-            {
-                List<OrderListDTO> i = new List<OrderListDTO> { };
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        cmd.CommandText = "dbo.GetAllOrderedItemsForTable";
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter p = new SqlParameter("@TableNo", TableNo);
-                        cmd.Parameters.Add(p);
-                        cmd.Connection = connection;
-                        connection.Open();
-
-                        using (SqlDataReader rdr = cmd.ExecuteReader())
-                        {
-                            while (rdr.Read())
-                            {
-                                OrderListDTO oor = new OrderListDTO()
-                                {
-                                    ItemId = Convert.ToInt32(rdr ["ItemId"]),
-                                    ItemName = rdr["ItemName"].ToString(),
-                                    Price =Convert.ToInt32( rdr["Price"]),
-                                    Quantity = Convert.ToInt32(rdr["Quantity"])
-
-                               };
-                                i.Add(oor);
-                            };
-                        }
-                    }
-                }
-                return i;
-
-            }
-            catch (Exception ex)
-            {
-                throw new FaultException(ex.Message);
-            }
-
-        }
         public int NewOrderForTable(int TableNo, int WaiterId)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -128,7 +86,6 @@ namespace HotelWCFService
                 return dt;
             }
         }
-         
         public DataTable GetItems()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -138,119 +95,40 @@ namespace HotelWCFService
                 return dt;
             }
         }
+        public List<OrderListDTO> GetOrderItemsForTableList(int TableNo)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = "dbo.GetAllOrderedItemsForTable";
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter p = new SqlParameter("@TableNo", TableNo);
+                cmd.Parameters.Add(p);
+
+                return GenConList<OrderListDTO>.ExecutorGen(cmd);
+            }
+        }
         public List<Tables> GetTableList()
         {
-            try
+            using (SqlCommand cmd = new SqlCommand())
             {
-               
-                List<Tables> i = new List<Tables> { };
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
-                {
-
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        cmd.CommandText = $"Select TableId from CusTable;";
-                        cmd.Connection = connection;
-                        connection.Open();
-
-                        using (SqlDataReader rdr = cmd.ExecuteReader())
-                        {
-                            while (rdr.Read())
-                            {
-                                Tables table = new Tables()
-                                {
-                                    TableId = Convert.ToInt32(rdr["TableId"])
-                                };
-                                i.Add(table);
-                            };
-                        }
-                    }
-                }
-                return i;
-
+                cmd.CommandText = $"Select TableId from CusTable;";
+                return GenConList<Tables>.ExecutorGen(cmd);
             }
-            catch (Exception ex)
-            {
-                throw new FaultException(ex.Message);
-            }
-
         }
         public List<Items> GetItemsList()
         {
-            try
+            using (SqlCommand cmd = new SqlCommand())
             {
-                List<Items> i = new List<Items> { };
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        cmd.CommandText = $"Select * from Items WHERE ItemActive = 1;";
-                        cmd.Connection = connection;
-                        connection.Open();
-
-                        using (SqlDataReader rdr = cmd.ExecuteReader())
-                        {
-                            while (rdr.Read())
-                            {
-                                Items dto = new Items()
-                                {
-                                    ItemId = Convert.ToInt32(rdr["ItemId"]),
-                                    ItemName = rdr["ItemName"].ToString(),
-                                    Price = Convert.ToInt32(rdr["Price"]),
-                                    TotalQuantity = Convert.ToInt32(rdr["TotalQuantity"]),
-                                    ItemActive = Convert.ToInt32(rdr["ItemActive"]),
-                                    FoodCategoryId = Convert.ToInt32(rdr["FoodCategoryId"])
-                                };
-                                i.Add(dto);
-                            };
-                        }
-                    }
-                }
-                return i;
-
+                cmd.CommandText = $"Select * from Items WHERE ItemActive = 1;";
+                return GenConList<Items>.ExecutorGen(cmd);
             }
-            catch (Exception ex)
-            {
-                throw new FaultException(ex.Message);
-            }
-
         }
         public List<Items> GetMenuByCategoryId(int CategoryId)
         {
-            try
+            using (SqlCommand cmd = new SqlCommand())
             {
-                List<Items> i = new List<Items> { };
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand())
-                    {
-                        cmd.CommandText = $"Select * from Items i where i.FoodCategoryId = {CategoryId} AND i.ItemActive = 1;";
-                        cmd.Connection = connection;
-                        connection.Open();
-                        using (SqlDataReader rdr = cmd.ExecuteReader())
-                        {
-                            while (rdr.Read())
-                            {
-                                Items dto = new Items()
-                                {
-                                    ItemId = Convert.ToInt32(rdr["ItemId"]),
-                                    ItemName = rdr["ItemName"].ToString(),
-                                    Price = Convert.ToInt32(rdr["Price"]),
-                                    TotalQuantity = Convert.ToInt32(rdr["TotalQuantity"]),
-                                    ItemActive = Convert.ToInt32(rdr["ItemActive"]),
-                                    FoodCategoryId = Convert.ToInt32(rdr["FoodCategoryId"]),
-                                };
-                                i.Add(dto);
-                            };
-                        }
-                    }
-                }
-                return i;
-
-            }
-            catch (Exception ex)
-            {
-                throw new FaultException(ex.Message);
+                cmd.CommandText = $"Select * from Items i where i.FoodCategoryId = {CategoryId} AND i.ItemActive = 1;";
+                return GenConList<Items>.ExecutorGen(cmd);
             }
         }
         public bool AddItems(Order_Items_Link order)
@@ -274,7 +152,7 @@ namespace HotelWCFService
         {
             using (SqlCommand cmd = new SqlCommand())
             {
-                cmd.CommandText = $"DELETE FROM Order_Items_Link WHERE OrderId = {order.OderId}  AND ItemId = {order.ItemId}";
+                cmd.CommandText = $"DELETE FROM Order_Items_Link WHERE OrderId = {order.OderId} AND ItemId = {order.ItemId}";
                 return GenCon.NonQuery(cmd);
             }
         }

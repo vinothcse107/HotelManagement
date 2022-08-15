@@ -164,16 +164,13 @@ namespace HotelManagement.HotelService {
         private int FoodCategoryIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ItemActiveField;
+        private bool ItemActiveField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ItemIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ItemNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HotelManagement.HotelService.Order_Items_Link[] OrdersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PriceField;
@@ -205,7 +202,7 @@ namespace HotelManagement.HotelService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ItemActive {
+        public bool ItemActive {
             get {
                 return this.ItemActiveField;
             }
@@ -239,19 +236,6 @@ namespace HotelManagement.HotelService {
                 if ((object.ReferenceEquals(this.ItemNameField, value) != true)) {
                     this.ItemNameField = value;
                     this.RaisePropertyChanged("ItemName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HotelManagement.HotelService.Order_Items_Link[] Orders {
-            get {
-                return this.OrdersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OrdersField, value) != true)) {
-                    this.OrdersField = value;
-                    this.RaisePropertyChanged("Orders");
                 }
             }
         }
@@ -305,13 +289,7 @@ namespace HotelManagement.HotelService {
         private int ItemIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HotelManagement.HotelService.Items ItemsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int OderIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HotelManagement.HotelService.Orders OrdersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int QuantityField;
@@ -340,19 +318,6 @@ namespace HotelManagement.HotelService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HotelManagement.HotelService.Items Items {
-            get {
-                return this.ItemsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
-                    this.ItemsField = value;
-                    this.RaisePropertyChanged("Items");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int OderId {
             get {
                 return this.OderIdField;
@@ -366,19 +331,6 @@ namespace HotelManagement.HotelService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HotelManagement.HotelService.Orders Orders {
-            get {
-                return this.OrdersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OrdersField, value) != true)) {
-                    this.OrdersField = value;
-                    this.RaisePropertyChanged("Orders");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Quantity {
             get {
                 return this.QuantityField;
@@ -387,333 +339,6 @@ namespace HotelManagement.HotelService {
                 if ((this.QuantityField.Equals(value) != true)) {
                     this.QuantityField = value;
                     this.RaisePropertyChanged("Quantity");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Orders", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models")]
-    [System.SerializableAttribute()]
-    public partial class Orders : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HotelManagement.HotelService.Table TableField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TableIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HotelManagement.HotelService.Table[] TableOrdersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int WaiterIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HotelManagement.HotelService.Users userField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HotelManagement.HotelService.Table Table {
-            get {
-                return this.TableField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TableField, value) != true)) {
-                    this.TableField = value;
-                    this.RaisePropertyChanged("Table");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TableId {
-            get {
-                return this.TableIdField;
-            }
-            set {
-                if ((this.TableIdField.Equals(value) != true)) {
-                    this.TableIdField = value;
-                    this.RaisePropertyChanged("TableId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HotelManagement.HotelService.Table[] TableOrders {
-            get {
-                return this.TableOrdersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TableOrdersField, value) != true)) {
-                    this.TableOrdersField = value;
-                    this.RaisePropertyChanged("TableOrders");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int WaiterId {
-            get {
-                return this.WaiterIdField;
-            }
-            set {
-                if ((this.WaiterIdField.Equals(value) != true)) {
-                    this.WaiterIdField = value;
-                    this.RaisePropertyChanged("WaiterId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HotelManagement.HotelService.Users user {
-            get {
-                return this.userField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.userField, value) != true)) {
-                    this.userField = value;
-                    this.RaisePropertyChanged("user");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Table", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models")]
-    [System.SerializableAttribute()]
-    public partial class Table : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int OrderIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HotelManagement.HotelService.Orders OrdersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TableIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HotelManagement.HotelService.Orders[] TableOrdersField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int OrderId {
-            get {
-                return this.OrderIdField;
-            }
-            set {
-                if ((this.OrderIdField.Equals(value) != true)) {
-                    this.OrderIdField = value;
-                    this.RaisePropertyChanged("OrderId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HotelManagement.HotelService.Orders Orders {
-            get {
-                return this.OrdersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OrdersField, value) != true)) {
-                    this.OrdersField = value;
-                    this.RaisePropertyChanged("Orders");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TableId {
-            get {
-                return this.TableIdField;
-            }
-            set {
-                if ((this.TableIdField.Equals(value) != true)) {
-                    this.TableIdField = value;
-                    this.RaisePropertyChanged("TableId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HotelManagement.HotelService.Orders[] TableOrders {
-            get {
-                return this.TableOrdersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TableOrdersField, value) != true)) {
-                    this.TableOrdersField = value;
-                    this.RaisePropertyChanged("TableOrders");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Users", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models")]
-    [System.SerializableAttribute()]
-    public partial class Users : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RoleidField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Phone {
-            get {
-                return this.PhoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
-                    this.PhoneField = value;
-                    this.RaisePropertyChanged("Phone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Roleid {
-            get {
-                return this.RoleidField;
-            }
-            set {
-                if ((this.RoleidField.Equals(value) != true)) {
-                    this.RoleidField = value;
-                    this.RaisePropertyChanged("Roleid");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserId {
-            get {
-                return this.UserIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserIdField, value) != true)) {
-                    this.UserIdField = value;
-                    this.RaisePropertyChanged("UserId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
                 }
             }
         }
@@ -884,6 +509,115 @@ namespace HotelManagement.HotelService {
                 if ((object.ReferenceEquals(this.usernameField, value) != true)) {
                     this.usernameField = value;
                     this.RaisePropertyChanged("username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Users", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models")]
+    [System.SerializableAttribute()]
+    public partial class Users : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RoleidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Phone {
+            get {
+                return this.PhoneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
+                    this.PhoneField = value;
+                    this.RaisePropertyChanged("Phone");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Roleid {
+            get {
+                return this.RoleidField;
+            }
+            set {
+                if ((this.RoleidField.Equals(value) != true)) {
+                    this.RoleidField = value;
+                    this.RaisePropertyChanged("Roleid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserIdField, value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
                 }
             }
         }

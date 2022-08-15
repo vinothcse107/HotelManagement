@@ -16,10 +16,11 @@ namespace HotelManagement.Pages
 
         ItemsServiceClient ItemsService = new ItemsServiceClient();
         HotelServiceClient dt = new HotelServiceClient();
-        static int Category = 1;
+        int Category = 1;
+        List<Items> items;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Items> items;
             var ses = (SessionDTO)Session["user"];
             if (!(ses != null && ses.role.Equals("waiter") && ses.sid != null))
             {
@@ -32,7 +33,7 @@ namespace HotelManagement.Pages
                     DropDownList(); //Add Dynamic Table Values to DropDown
 
                     // Bind Items To Repeter List
-                   items = ItemsService.GetMenuByCategoryId(Category).ToList();
+                    items = ItemsService.GetMenuByCategoryId(Category).ToList();
                     menulist.DataSource = items;
                     menulist.DataBind();
 
@@ -40,9 +41,6 @@ namespace HotelManagement.Pages
                     GetCurrentOrderId(sender, e);
                 }
             }
-
-
-
         }
 
         protected void GetCurrentOrderId(object sender, EventArgs e)
@@ -64,7 +62,7 @@ namespace HotelManagement.Pages
         }
         protected void Order_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void Add_Click(object sender, EventArgs e)

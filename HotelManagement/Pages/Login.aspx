@@ -4,13 +4,13 @@
     <br />
     <br />
     <br />
-    <asp:Label ID="usernameLabel" runat="server" Text="Username">    </asp:Label>
-    <asp:TextBox ID="username" runat="server"></asp:TextBox>
+    <asp:Label ID="usernameLabel" runat="server" Text="Username"></asp:Label>
+    <asp:TextBox ID="username" runat="server" Text="Logesh"></asp:TextBox>
 
     <br />
     <br />
     <asp:Label ID="passwordLabel" runat="server" Text="Password"></asp:Label>
-    <asp:TextBox ID="password" runat="server"></asp:TextBox>
+    <asp:TextBox ID="password" runat="server" Text="Logesh"></asp:TextBox>
     <br />
     <br />
 

@@ -51,7 +51,7 @@ namespace HotelManagement.Admin
                     Price = Convert.ToInt32(Price.Text),
                     FoodCategoryId = Convert.ToInt32(CategoryList.SelectedItem.Value),
                     TotalQuantity = 0,
-                    ItemActive = 1
+                    ItemActive = true
                 };
                 bool b = ad.AddItemsToMenu(i);
                 Response.Write(b ? "Item Added To Menu" : "Item Not Add , Error !!!");

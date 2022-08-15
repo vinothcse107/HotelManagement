@@ -11,17 +11,8 @@ namespace HotelWCFService.Models
 {
     public class Orders
     {
-        [Key]
         public int Id { get; set; }
-        [ForeignKey("Table")]
         public int TableId { get; set; }
-        [JsonIgnore]
-        public Table Table { get; set; }
-
-        [ForeignKey("user")]
         public int WaiterId { get; set; }
-        [JsonIgnore]
-        public Users user{ get; set; }
-        public ICollection<Table> TableOrders { get; set; }
     }
 }

@@ -11,13 +11,8 @@ namespace HotelWCFService.Models
 {
     public class Order_Items_Link
     {
-        [Key , ForeignKey("Items")]
         public int ItemId { get; set; }
-        public Items Items { get; set; }
-        [Key , ForeignKey("Orders")]
         public int OderId{ get; set; }
-        [JsonIgnore]
-        public Orders Orders { get; set; }
         public int Quantity{ get; set; }
 
 

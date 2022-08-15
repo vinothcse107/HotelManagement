@@ -9,14 +9,12 @@ namespace HotelWCFService.Models
 {
     public class Items
     {
-        [Key]
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public int Price { get; set; }
         public int TotalQuantity { get; set; }
-        public int ItemActive { get; set; }
+        public bool ItemActive { get; set; }
         public int FoodCategoryId { get; set; }
-        public ICollection<Order_Items_Link> Orders { get; set; }
 
     }
 }

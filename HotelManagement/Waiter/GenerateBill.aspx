@@ -2,12 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
     <style>
-       
-
         .td {
             border: none;
         }
-          table {
+
+        table {
             border-spacing: unset;
             border-collapse: collapse;
             background: white;
@@ -88,14 +87,13 @@
                 cursor: pointer;
             }
 
-            .amount
-            {
-                background-color :white;
-                color: black;
-                height:fit-content;
-                width: 100%;
-                font-size: 12px;
-            }
+        .amount {
+            background-color: white;
+            color: black;
+            height: fit-content;
+            width: 100%;
+            font-size: 12px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -113,19 +111,14 @@
                         <asp:DropDownList class="btn btn-secondary" ID="TablesDropDownList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="GetCurrentOrderId"></asp:DropDownList>
                     </div>--%>
             <div style="display: flex; justify-content: center">
-                <asp:Repeater ID="tableList" runat="server" OnItemCommand="tableList_ItemCommand">
-
-
+                <asp:Repeater ID="tableList" runat="server">
                     <ItemTemplate>
                         <asp:Label ID="tableno" runat="server" Visible="false" Text='<%# Eval("TableId") %>'></asp:Label>
-
-                        <asp:Button ID="TableId"  runat="server" Text='<%# Eval("TableId") %>' OnClick="TableNo" />
-
-
+                        <asp:Button ID="TableId" runat="server" Text='<%# Eval("TableId") %>' OnClick="TableNo" />
                     </ItemTemplate>
                 </asp:Repeater>
-                </div>
-                <asp:Repeater ID="Orderedlist" runat="server">
+            </div>
+            <asp:Repeater ID="Orderedlist" runat="server">
                 <HeaderTemplate>
                     <table cellspacing="0" rules="all">
                         <tr class="text-center">
@@ -140,7 +133,7 @@
                             </th>
                             <th scope="col" style="width: 100px">Delete Item
                             </th>
-                                 </tr>
+                        </tr>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
@@ -158,7 +151,7 @@
                             <asp:Label ID="Quantity" runat="server" Text='<%# Eval("Quantity") %>' />
                         </td>
                         <td>
-                            <asp:Button ID="DelBtn" runat="server" class="btn btn-danger" Text="Delete" OnClick="Del_Click"  />
+                            <asp:Button ID="DelBtn" runat="server" class="btn btn-danger" Text="Delete" OnClick="Del_Click" />
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -166,11 +159,11 @@
                     </table>
                 </FooterTemplate>
             </asp:Repeater>
-            
+
         </div>
         <br />
         <div class="amount">
-        <asp:Label ID="Amount" runat="server" Text=""></asp:Label>
+            <asp:Label ID="Amount" runat="server" Text=""></asp:Label>
         </div>
     </div>
     <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
