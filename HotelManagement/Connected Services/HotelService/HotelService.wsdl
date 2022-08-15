@@ -5,8 +5,8 @@
       <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
-      <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" />
-      <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" />
+      <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" />
+      <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IHotelService_GetTables_InputMessage">
@@ -27,6 +27,12 @@
   <wsdl:message name="IItemsService_GetOrderItemsForTable_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOrderItemsForTableResponse" />
   </wsdl:message>
+  <wsdl:message name="IItemsService_GetOrderItemsForTableList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemsForTableList" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetOrderItemsForTableList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderItemsForTableListResponse" />
+  </wsdl:message>
   <wsdl:message name="IItemsService_GetMenu_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMenu" />
   </wsdl:message>
@@ -38,6 +44,12 @@
   </wsdl:message>
   <wsdl:message name="IItemsService_GetItems_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetTableList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTableList" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetTableList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTableListResponse" />
   </wsdl:message>
   <wsdl:message name="IItemsService_GetCategory_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCategory" />
@@ -93,6 +105,12 @@
   <wsdl:message name="IAdminService_DeleteItemsFromMenu_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteItemsFromMenuResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_UpdateItemTotalQuantity_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateItemTotalQuantity" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_UpdateItemTotalQuantity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateItemTotalQuantityResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdminService_AddTables_InputMessage">
     <wsdl:part name="parameters" element="tns:AddTables" />
   </wsdl:message>
@@ -138,6 +156,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetOrderItemsForTable" message="tns:IItemsService_GetOrderItemsForTable_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetOrderItemsForTableResponse" message="tns:IItemsService_GetOrderItemsForTable_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetOrderItemsForTableList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetOrderItemsForTableList" message="tns:IItemsService_GetOrderItemsForTableList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetOrderItemsForTableListResponse" message="tns:IItemsService_GetOrderItemsForTableList_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetMenu">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetMenu" message="tns:IItemsService_GetMenu_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetMenuResponse" message="tns:IItemsService_GetMenu_OutputMessage" />
@@ -145,6 +167,10 @@
     <wsdl:operation name="GetItems">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItems" message="tns:IItemsService_GetItems_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsResponse" message="tns:IItemsService_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetTableList" message="tns:IItemsService_GetTableList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetTableListResponse" message="tns:IItemsService_GetTableList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetCategory">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetCategory" message="tns:IItemsService_GetCategory_InputMessage" />
@@ -183,6 +209,10 @@
     <wsdl:operation name="DeleteItemsFromMenu">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/DeleteItemsFromMenu" message="tns:IAdminService_DeleteItemsFromMenu_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/DeleteItemsFromMenuResponse" message="tns:IAdminService_DeleteItemsFromMenu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItemTotalQuantity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/UpdateItemTotalQuantity" message="tns:IAdminService_UpdateItemTotalQuantity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/UpdateItemTotalQuantityResponse" message="tns:IAdminService_UpdateItemTotalQuantity_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddTables">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/AddTables" message="tns:IAdminService_AddTables_InputMessage" />
@@ -239,6 +269,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetOrderItemsForTableList">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/GetOrderItemsForTableList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetMenu">
       <soap:operation soapAction="http://tempuri.org/IItemsService/GetMenu" style="document" />
       <wsdl:input>
@@ -250,6 +289,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetItems">
       <soap:operation soapAction="http://tempuri.org/IItemsService/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableList">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/GetTableList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -334,6 +382,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteItemsFromMenu">
       <soap:operation soapAction="http://tempuri.org/IAdminService/DeleteItemsFromMenu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateItemTotalQuantity">
+      <soap:operation soapAction="http://tempuri.org/IAdminService/UpdateItemTotalQuantity" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

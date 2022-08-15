@@ -46,10 +46,15 @@ namespace HotelWCFService
         DataTable GetOrderItemsForTable(int TableNo);
 
         [OperationContract]
+        List<OrderListDTO> GetOrderItemsForTableList(int TableNo);
+
+        [OperationContract]
         DataTable GetMenu();
 
         [OperationContract]
         DataTable GetItems();
+        [OperationContract]
+        List<Tables> GetTableList();
         [OperationContract]
         DataTable GetCategory();
 
@@ -79,6 +84,10 @@ namespace HotelWCFService
         bool AddItemsToMenu(Items Item);
         [OperationContract]
         bool DeleteItemsFromMenu(int ItemId);
+
+        [OperationContract]
+        bool UpdateItemTotalQuantity(int ItemId, int Quantity);
+
         [OperationContract]
         bool AddTables();
     }

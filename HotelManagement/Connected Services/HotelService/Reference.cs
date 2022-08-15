@@ -15,6 +15,144 @@ namespace HotelManagement.HotelService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderListDTO", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
+    [System.SerializableAttribute()]
+    public partial class OrderListDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ItemIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ItemNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuantityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ItemId {
+            get {
+                return this.ItemIdField;
+            }
+            set {
+                if ((this.ItemIdField.Equals(value) != true)) {
+                    this.ItemIdField = value;
+                    this.RaisePropertyChanged("ItemId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ItemName {
+            get {
+                return this.ItemNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemNameField, value) != true)) {
+                    this.ItemNameField = value;
+                    this.RaisePropertyChanged("ItemName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Price {
+            get {
+                return this.PriceField;
+            }
+            set {
+                if ((this.PriceField.Equals(value) != true)) {
+                    this.PriceField = value;
+                    this.RaisePropertyChanged("Price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Tables", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
+    [System.SerializableAttribute()]
+    public partial class Tables : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TableIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TableId {
+            get {
+                return this.TableIdField;
+            }
+            set {
+                if ((this.TableIdField.Equals(value) != true)) {
+                    this.TableIdField = value;
+                    this.RaisePropertyChanged("TableId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Items", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models")]
     [System.SerializableAttribute()]
     public partial class Items : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -831,6 +969,12 @@ namespace HotelManagement.HotelService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetOrderItemsForTable", ReplyAction="http://tempuri.org/IItemsService/GetOrderItemsForTableResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> GetOrderItemsForTableAsync(int TableNo);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetOrderItemsForTableList", ReplyAction="http://tempuri.org/IItemsService/GetOrderItemsForTableListResponse")]
+        HotelManagement.HotelService.OrderListDTO[] GetOrderItemsForTableList(int TableNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetOrderItemsForTableList", ReplyAction="http://tempuri.org/IItemsService/GetOrderItemsForTableListResponse")]
+        System.Threading.Tasks.Task<HotelManagement.HotelService.OrderListDTO[]> GetOrderItemsForTableListAsync(int TableNo);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetMenu", ReplyAction="http://tempuri.org/IItemsService/GetMenuResponse")]
         System.Data.DataTable GetMenu();
         
@@ -842,6 +986,12 @@ namespace HotelManagement.HotelService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetItems", ReplyAction="http://tempuri.org/IItemsService/GetItemsResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> GetItemsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetTableList", ReplyAction="http://tempuri.org/IItemsService/GetTableListResponse")]
+        HotelManagement.HotelService.Tables[] GetTableList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetTableList", ReplyAction="http://tempuri.org/IItemsService/GetTableListResponse")]
+        System.Threading.Tasks.Task<HotelManagement.HotelService.Tables[]> GetTableListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetCategory", ReplyAction="http://tempuri.org/IItemsService/GetCategoryResponse")]
         System.Data.DataTable GetCategory();
@@ -921,6 +1071,14 @@ namespace HotelManagement.HotelService {
             return base.Channel.GetOrderItemsForTableAsync(TableNo);
         }
         
+        public HotelManagement.HotelService.OrderListDTO[] GetOrderItemsForTableList(int TableNo) {
+            return base.Channel.GetOrderItemsForTableList(TableNo);
+        }
+        
+        public System.Threading.Tasks.Task<HotelManagement.HotelService.OrderListDTO[]> GetOrderItemsForTableListAsync(int TableNo) {
+            return base.Channel.GetOrderItemsForTableListAsync(TableNo);
+        }
+        
         public System.Data.DataTable GetMenu() {
             return base.Channel.GetMenu();
         }
@@ -935,6 +1093,14 @@ namespace HotelManagement.HotelService {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> GetItemsAsync() {
             return base.Channel.GetItemsAsync();
+        }
+        
+        public HotelManagement.HotelService.Tables[] GetTableList() {
+            return base.Channel.GetTableList();
+        }
+        
+        public System.Threading.Tasks.Task<HotelManagement.HotelService.Tables[]> GetTableListAsync() {
+            return base.Channel.GetTableListAsync();
         }
         
         public System.Data.DataTable GetCategory() {
@@ -1010,6 +1176,12 @@ namespace HotelManagement.HotelService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteItemsFromMenu", ReplyAction="http://tempuri.org/IAdminService/DeleteItemsFromMenuResponse")]
         System.Threading.Tasks.Task<bool> DeleteItemsFromMenuAsync(int ItemId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UpdateItemTotalQuantity", ReplyAction="http://tempuri.org/IAdminService/UpdateItemTotalQuantityResponse")]
+        bool UpdateItemTotalQuantity(int ItemId, int Quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UpdateItemTotalQuantity", ReplyAction="http://tempuri.org/IAdminService/UpdateItemTotalQuantityResponse")]
+        System.Threading.Tasks.Task<bool> UpdateItemTotalQuantityAsync(int ItemId, int Quantity);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddTables", ReplyAction="http://tempuri.org/IAdminService/AddTablesResponse")]
         bool AddTables();
         
@@ -1058,6 +1230,14 @@ namespace HotelManagement.HotelService {
         
         public System.Threading.Tasks.Task<bool> DeleteItemsFromMenuAsync(int ItemId) {
             return base.Channel.DeleteItemsFromMenuAsync(ItemId);
+        }
+        
+        public bool UpdateItemTotalQuantity(int ItemId, int Quantity) {
+            return base.Channel.UpdateItemTotalQuantity(ItemId, Quantity);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateItemTotalQuantityAsync(int ItemId, int Quantity) {
+            return base.Channel.UpdateItemTotalQuantityAsync(ItemId, Quantity);
         }
         
         public bool AddTables() {

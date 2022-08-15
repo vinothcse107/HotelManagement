@@ -42,6 +42,15 @@ namespace HotelWCFService
             return x;
         }
 
+        public bool UpdateItemTotalQuantity(int ItemId, int Quantity)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = $"UPDATE Items SET TotalQuantity = {Quantity} WHERE ItemId = {ItemId};";
+                bool x = GenCon.NonQuery(cmd);
+                return x;
+            }
+        }
         public bool AddTables()
         {
             using (SqlCommand cmd = new SqlCommand())

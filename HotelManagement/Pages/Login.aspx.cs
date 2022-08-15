@@ -36,7 +36,7 @@ namespace HotelManagement
                 Session["user"] = ses;
 
                 if (rt.role.Equals("admin"))
-                    Response.Redirect("~/Admin/AddItem.aspx");
+                    Response.Redirect("~/Admin/AdminMenu.aspx");
                 else if (rt.role.Equals("waiter"))
                     Response.Redirect("~/Waiter/MenuList.aspx");
             }

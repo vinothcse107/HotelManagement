@@ -55,6 +55,9 @@ namespace HotelManagement.Admin
                 };
                 bool b = ad.AddItemsToMenu(i);
                 Response.Write(b ? "Item Added To Menu" : "Item Not Add , Error !!!");
+                ItemName.Text = "";
+                Price.Text = "";
+
             }
             else
             {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Web;
 using HotelWCFService.Models;
+using HotelWCFService.DTO;
 
 namespace HotelWCFService
 {
@@ -24,6 +25,48 @@ namespace HotelWCFService
                 DataTable dt = GenCon.Executor(cmd);
                 return dt;
             }
+        }
+        public List<OrderListDTO> GetOrderItemsForTableList(int  TableNo)
+        {
+            try
+            {
+                List<OrderListDTO> i = new List<OrderListDTO> { };
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.CommandText = "dbo.GetAllOrderedItemsForTable";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter p = new SqlParameter("@TableNo", TableNo);
+                        cmd.Parameters.Add(p);
+                        cmd.Connection = connection;
+                        connection.Open();
+
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                OrderListDTO oor = new OrderListDTO()
+                                {
+                                    ItemId = Convert.ToInt32(rdr ["ItemId"]),
+                                    ItemName = rdr["ItemName"].ToString(),
+                                    Price =Convert.ToInt32( rdr["Price"]),
+                                    Quantity = Convert.ToInt32(rdr["Quantity"])
+
+                               };
+                                i.Add(oor);
+                            };
+                        }
+                    }
+                }
+                return i;
+
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+
         }
         public int NewOrderForTable(int TableNo, int WaiterId)
         {
@@ -85,6 +128,7 @@ namespace HotelWCFService
                 return dt;
             }
         }
+         
         public DataTable GetItems()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -93,6 +137,43 @@ namespace HotelWCFService
                 DataTable dt = GenCon.Executor(cmd);
                 return dt;
             }
+        }
+        public List<Tables> GetTableList()
+        {
+            try
+            {
+               
+                List<Tables> i = new List<Tables> { };
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+                {
+
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.CommandText = $"Select TableId from CusTable;";
+                        cmd.Connection = connection;
+                        connection.Open();
+
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                Tables table = new Tables()
+                                {
+                                    TableId = Convert.ToInt32(rdr["TableId"])
+                                };
+                                i.Add(table);
+                            };
+                        }
+                    }
+                }
+                return i;
+
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+
         }
         public List<Items> GetItemsList()
         {

@@ -1,79 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfItems">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfOrderListDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Items" nillable="true" type="tns:Items" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderListDTO" nillable="true" type="tns:OrderListDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfItems" nillable="true" type="tns:ArrayOfItems" />
-  <xs:complexType name="Items">
+  <xs:element name="ArrayOfOrderListDTO" nillable="true" type="tns:ArrayOfOrderListDTO" />
+  <xs:complexType name="OrderListDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" name="FoodCategoryId" type="xs:int" />
-      <xs:element minOccurs="0" name="ItemActive" type="xs:int" />
       <xs:element minOccurs="0" name="ItemId" type="xs:int" />
       <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Orders" nillable="true" type="tns:ArrayOfOrder_Items_Link" />
       <xs:element minOccurs="0" name="Price" type="xs:int" />
-      <xs:element minOccurs="0" name="TotalQuantity" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Items" nillable="true" type="tns:Items" />
-  <xs:complexType name="ArrayOfOrder_Items_Link">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Order_Items_Link" nillable="true" type="tns:Order_Items_Link" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfOrder_Items_Link" nillable="true" type="tns:ArrayOfOrder_Items_Link" />
-  <xs:complexType name="Order_Items_Link">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ItemId" type="xs:int" />
-      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:Items" />
-      <xs:element minOccurs="0" name="OderId" type="xs:int" />
-      <xs:element minOccurs="0" name="Orders" nillable="true" type="tns:Orders" />
       <xs:element minOccurs="0" name="Quantity" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Order_Items_Link" nillable="true" type="tns:Order_Items_Link" />
-  <xs:complexType name="Orders">
+  <xs:element name="OrderListDTO" nillable="true" type="tns:OrderListDTO" />
+  <xs:complexType name="ArrayOfTables">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Table" nillable="true" type="tns:Table" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Tables" nillable="true" type="tns:Tables" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTables" nillable="true" type="tns:ArrayOfTables" />
+  <xs:complexType name="Tables">
+    <xs:sequence>
       <xs:element minOccurs="0" name="TableId" type="xs:int" />
-      <xs:element minOccurs="0" name="TableOrders" nillable="true" type="tns:ArrayOfTable" />
-      <xs:element minOccurs="0" name="WaiterId" type="xs:int" />
-      <xs:element minOccurs="0" name="user" nillable="true" type="tns:Users" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Orders" nillable="true" type="tns:Orders" />
-  <xs:complexType name="Table">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="OrderId" type="xs:int" />
-      <xs:element minOccurs="0" name="Orders" nillable="true" type="tns:Orders" />
-      <xs:element minOccurs="0" name="TableId" type="xs:int" />
-      <xs:element minOccurs="0" name="TableOrders" nillable="true" type="tns:ArrayOfOrders" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Table" nillable="true" type="tns:Table" />
-  <xs:complexType name="ArrayOfOrders">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Orders" nillable="true" type="tns:Orders" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfOrders" nillable="true" type="tns:ArrayOfOrders" />
-  <xs:complexType name="ArrayOfTable">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Table" nillable="true" type="tns:Table" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfTable" nillable="true" type="tns:ArrayOfTable" />
-  <xs:complexType name="Users">
+  <xs:element name="Tables" nillable="true" type="tns:Tables" />
+  <xs:complexType name="LoginDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Roleid" type="xs:int" />
-      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Users" nillable="true" type="tns:Users" />
+  <xs:element name="LoginDTO" nillable="true" type="tns:LoginDTO" />
+  <xs:complexType name="ResponseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="xs:boolean" />
+      <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="role" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="userId" type="xs:int" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseDTO" nillable="true" type="tns:ResponseDTO" />
 </xs:schema>

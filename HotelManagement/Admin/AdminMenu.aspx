@@ -1,13 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Waiter/Waiter.Master" AutoEventWireup="true" CodeBehind="GenerateBill.aspx.cs" Inherits="HotelManagement.Waiter.GenerateBill" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="AdminMenu.aspx.cs" Inherits="HotelManagement.Admin.AdminMenu" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
-    <style>
-       
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=B612&family=Copse&family=Lato&display=swap');
 
-        .td {
-            border: none;
-        }
-          table {
+        table {
             border-spacing: unset;
             border-collapse: collapse;
             background: white;
@@ -87,45 +83,36 @@
                 background-color: #f5f5f5;
                 cursor: pointer;
             }
-
-            .amount
-            {
-                background-color :white;
-                color: black;
-                height:fit-content;
-                width: 100%;
-                font-size: 12px;
-            }
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <div>
+     <div>
         <br />
         <br />
         <div class="m-2" id="Outer">
             <br />
-            <%--    <div style="display: flex; justify-content: center">
+            <div style="display: flex; justify-content: center">
 
                 <div class="btn-group px-3" role="group">
                     <button type="button" class="btn btn-secondary">Table</button>
                     <div class="btn-group" role="group">
                         <asp:DropDownList class="btn btn-secondary" ID="TablesDropDownList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="GetCurrentOrderId"></asp:DropDownList>
-                    </div>--%>
-            <div style="display: flex; justify-content: center">
-                <asp:Repeater ID="tableList" runat="server" OnItemCommand="tableList_ItemCommand">
-
-
-                    <ItemTemplate>
-                        <asp:Label ID="tableno" runat="server" Visible="false" Text='<%# Eval("TableId") %>'></asp:Label>
-
-                        <asp:Button ID="TableId"  runat="server" Text='<%# Eval("TableId") %>' OnClick="TableNo" />
-
-
-                    </ItemTemplate>
-                </asp:Repeater>
+                    </div>
                 </div>
-                <asp:Repeater ID="Orderedlist" runat="server">
+                <br />
+               
+            </div>
+            <br />
+            <div style="display: flex; justify-content: center">
+                <asp:Button class="btn btn-success mr-1" ID="Button1" runat="server" Text="Veg" value="1" OnCommand="ItemsByCategory" CommandName="veg" CommandArgument="1" />
+                <asp:Button class="btn btn-danger mr-1" ID="Button2" runat="server" Text="Non-Veg" value="2" OnCommand="ItemsByCategory" CommandName="nonveg" CommandArgument="2" />
+                <asp:Button class="btn btn-info mr-1" ID="Button3" runat="server" Text="Desserts" value="3" OnCommand="ItemsByCategory" CommandName="dessert" CommandArgument="3" />
+                <asp:Button class="btn btn-warning mr-1" ID="Button4" runat="server" Text="Soup" value="4" OnCommand="ItemsByCategory" CommandName="soup" CommandArgument="4" />
+                <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+            </div>
+            <br />
+            <asp:Repeater ID="menulist" runat="server">
                 <HeaderTemplate>
                     <table cellspacing="0" rules="all">
                         <tr class="text-center">
@@ -138,9 +125,10 @@
                             </th>
                             <th scope="col" style="width: 100px">Quantity
                             </th>
-                            <th scope="col" style="width: 100px">Delete Item
+                            <th scope="col" style="width: 100px">Update Item
                             </th>
-                                 </tr>
+
+                        </tr>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
@@ -155,10 +143,10 @@
                             <asp:Label ID="itprice" runat="server" Text='<%# Eval("Price") %>' />
                         </td>
                         <td class="Quantity">
-                            <asp:Label ID="Quantity" runat="server" Text='<%# Eval("Quantity") %>' />
+                            <asp:TextBox ID="Quantity" runat="server" Width="50px" required min="0" max="500" Text='<%# Bind("TotalQuantity") %>' type="number"></asp:TextBox>
                         </td>
                         <td>
-                            <asp:Button ID="DelBtn" runat="server" class="btn btn-danger" Text="Delete" OnClick="Del_Click"  />
+                            <asp:Button ID="UpdateBtn" runat="server" class="btn btn-primary" Text="Update" OnClick="Update_Click" CommandArgument='<%# Eval("ItemId")  %>' />
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -166,18 +154,9 @@
                     </table>
                 </FooterTemplate>
             </asp:Repeater>
+            <asp:Label ID="Label2" runat="server" Text="" Style="color: white"></asp:Label>
+            <br />
             
         </div>
-        <br />
-        <div class="amount">
-        <asp:Label ID="Amount" runat="server" Text=""></asp:Label>
-        </div>
     </div>
-    <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-    <br />
-
-    <br />
-
-
-
 </asp:Content>

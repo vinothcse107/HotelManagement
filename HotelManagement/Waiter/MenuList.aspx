@@ -160,7 +160,7 @@
             <asp:Label ID="Label2" runat="server" Text="" Style="color: white"></asp:Label>
             <br />
             <div style="display: flex; justify-content: center">
-                <asp:Button ID="Order" class="btn btn-success" runat="server" Text="Place Order" OnClick="Order_Click" />
+                <asp:Button ID="Order" class="btn btn-success" href="GenerateBill" runat="server" Text="Place Order" OnClick="Order_Click" />
             </div>
             <br />
             &nbsp;

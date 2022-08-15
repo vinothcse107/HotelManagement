@@ -75,6 +75,7 @@
     <Compile Include="Code\ItemsService.cs" />
     <Compile Include="DTO\LoginDTO.cs" />
     <Compile Include="DTO\OrderListDTO.cs" />
+    <Compile Include="DTO\Tables.cs" />
     <Compile Include="GenCon.cs" />
     <Compile Include="HotelService.svc.cs">
       <DependentUpon>HotelService.svc</DependentUpon>

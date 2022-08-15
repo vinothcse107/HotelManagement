@@ -4,24 +4,23 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.ServiceModel;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace HotelManagement.Pages
+namespace HotelManagement.Admin
 {
-    public partial class MenuList : System.Web.UI.Page
+    public partial class AdminMenu : System.Web.UI.Page
     {
 
         ItemsServiceClient ItemsService = new ItemsServiceClient();
+        AdminServiceClient AdminService = new AdminServiceClient();
         HotelServiceClient dt = new HotelServiceClient();
         static int Category = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Items> items;
             var ses = (SessionDTO)Session["user"];
-            if (!(ses != null && ses.role.Equals("waiter") && ses.sid != null))
+            if (!(ses != null && ses.role.Equals("admin") && ses.sid != null))
             {
                 Response.Redirect("~/Pages/Login.aspx");
             }
@@ -32,7 +31,7 @@ namespace HotelManagement.Pages
                     DropDownList(); //Add Dynamic Table Values to DropDown
 
                     // Bind Items To Repeter List
-                   items = ItemsService.GetMenuByCategoryId(Category).ToList();
+                    List<Items> items = ItemsService.GetMenuByCategoryId(Category).ToList();
                     menulist.DataSource = items;
                     menulist.DataBind();
 
@@ -40,8 +39,6 @@ namespace HotelManagement.Pages
                     GetCurrentOrderId(sender, e);
                 }
             }
-
-
 
         }
 
@@ -62,27 +59,18 @@ namespace HotelManagement.Pages
             }
             TablesDropDownList.DataBind();
         }
-        protected void Order_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        protected void Add_Click(object sender, EventArgs e)
+      
+        protected void Update_Click(object sender, EventArgs e)
         {
             RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
             var id = Convert.ToInt32((item.FindControl("ItemId") as Label).Text);
             var Qty = Convert.ToInt32((item.FindControl("Quantity") as TextBox).Text);
 
 
-            bool res = ItemsService.AddItems(
-                new Order_Items_Link
-                {
-                    ItemId = id,
-                    Quantity = Qty,
-                    OderId = Convert.ToInt32(Session["OrderNo"])
-                });
+            bool res = AdminService.UpdateItemTotalQuantity(id, Qty);
+            Label2.Text = res ? "Item Updatd" : "Error !! Item Not Updated";
 
-            Label2.Text = res ? "Item Added" : "Error !! Item Not Added";
+
         }
         protected void ItemsByCategory(object sender, CommandEventArgs e)
         {
@@ -103,21 +91,6 @@ namespace HotelManagement.Pages
             menulist.DataBind();
         }
 
-        protected void NewOrder_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var ses = (SessionDTO)Session["user"];
-                int x = ItemsService.NewOrderForTable(
-                                Convert.ToInt32(TablesDropDownList.SelectedItem.Text),
-                                Convert.ToInt32(ses.userid));
-                Session["OrderNo"] = x;
-                Label2.Text = "Your Order No is : " + x.ToString();
-            }
-            catch (FaultException ex)
-            {
-                Label2.Text = ex.Message;
-            }
-        }
+        
     }
 }
