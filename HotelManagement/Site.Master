@@ -18,7 +18,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
-<body>
+<body style="overflow:hidden" >
      <form runat="server">     
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -64,9 +64,9 @@
                 </ul>
             </div>
             </nav>
-         <div style="background-image: url('../Images/kolam 1.jpg'); background-attachment: scroll; ">
+         <div style="background-image: url('../Images/LoginImg.jpg'); background-attachment: fixed; width:100%; background-size:cover; background-repeat:no-repeat ">
    
-        <div class="container body-content" text-align:"center"   >
+        <div class="container body-content"    >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

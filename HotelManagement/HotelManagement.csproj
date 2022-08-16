@@ -135,9 +135,12 @@
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CookDash.aspx" />
+    <Content Include="Cook\CookDash.aspx" />
     <Content Include="CSS\AdminImg.css" />
     <Content Include="CSS\SiteCss.css" />
     <Content Include="Images\AdminImage.jpg" />
+    <Content Include="Images\LoginImg.jpg" />
     <Content Include="Images\vegeblack1.jpg" />
     <Content Include="Images\WaiterPage1.jpg" />
     <Content Include="Images\WaiterPage2.jpg" />
@@ -191,6 +194,7 @@
     <None Include="Connected Services\HotelService\HotelService4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Cook\Cook.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -343,6 +347,27 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="CookDash.aspx.cs">
+      <DependentUpon>CookDash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CookDash.aspx.designer.cs">
+      <DependentUpon>CookDash.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cook\Cook.Master.cs">
+      <DependentUpon>Cook.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cook\Cook.Master.designer.cs">
+      <DependentUpon>Cook.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Cook\CookDash.aspx.cs">
+      <DependentUpon>CookDash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cook\CookDash.aspx.designer.cs">
+      <DependentUpon>CookDash.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AdminControls.aspx.cs">
       <DependentUpon>AdminControls.aspx</DependentUpon>

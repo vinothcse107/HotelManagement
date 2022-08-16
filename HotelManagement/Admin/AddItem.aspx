@@ -6,77 +6,93 @@
        
     </style>
     <script>
-        $(document).ready(function () {
+        window.onload = function () {
+        
+            document.getElementById("openid").click();
+        };
 
-            //success toast
-            $('#AddItemsToMenu').click(function () {
-
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": true,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "showDuration": "300",
-                    "hideDuration": "1000000",
-                    "timeOut": "3000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                toastr["success"]("Table Added");
-            });
-
-        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   
 
-    <div>
+
+    <div >
         <br />
         <br />
         <br />
         <br />
-        <div style="border-width: medium; margin: auto; width: 470px; text-align: center; height: max-content;">
-            <div id="DivAddItems" style="margin-left: 15px; border-radius: 10px; width: 488px; background-color: aliceblue; color: #000000;">
-                <br />
-                <br />
-                <div class="form-label-group">
-                    <asp:Label class="control-label" runat="server" Text="ItemName" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="ItemName" class="form-control" runat="server" required Minlength="5" MaxLength="30" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
-                </div>
+        <%------------------------------------%>
+        <p>
+            <button class="btn btn-primary " id="openid" type="button" data-toggle="collapse" data-target="#multiCollapseExample1"  aria-expanded="true" aria-controls="multiCollapseExample1" onclick="HideDel()">Add Items</button>
+            <button class="btn btn-primary" id="delid" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample1" onclick="HideAdd()">Delete Items</button>
+        </p>
+        <div style=" display:flex; justify-content:center">
+        <div class="row"  style=" display:flex; justify-content:center">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                    <div class="card card-body" style="background-color: aliceblue;">
+                        <div style="border-width: medium; margin: auto; width: 470px; text-align: center; height: max-content;">
+                            <div id="DivAddItems" style="border-radius: 10px; width: 488px;  color: #000000;">
+                                <br />
+                                <br />
+                                <div class="form-label-group">
+                                    <asp:Label class="control-label" runat="server" Text="ItemName" Font-Size="Larger"></asp:Label>
+                                    <asp:TextBox ID="ItemName" class="form-control" runat="server" required Minlength="5" MaxLength="30" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
+                                </div>
+                                <br />
+                                <div class="form-label-group">
+                                    <asp:Label class="control-label" runat="server" Text="Price" Font-Size="Larger"></asp:Label>
+                                    <asp:TextBox ID="Price" class="form-control" runat="server" min="1" max="1000" Height="30px" type="number" Width="353px" Style="margin: auto"></asp:TextBox>
+                                </div>
+                                <br />
+                                <div class="btn-group px-3" role="group">
+                                    <button type="button" class="btn btn-secondary">Item Category</button>
+                                    <div class="btn-group" role="group">
+                                        <asp:DropDownList class="btn btn-secondary" ID="CategoryList" runat="server"></asp:DropDownList>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <asp:Button ID="AddItemsToMenu" runat="server" Text="Add Item" Style="text-align: center" Font-Size="20px"
+                                    OnClick="AddItemsToMenu_Click" class="btn btn-primary align-content-center" />
 
-                <br />
 
-                <div class="form-label-group">
-                    <asp:Label class="control-label" runat="server" Text="Price" Font-Size="Larger"></asp:Label>
-                    <asp:TextBox ID="Price" class="form-control" runat="server" min="1" max="1000" Height="30px" type="number" Width="353px" Style="margin: auto"></asp:TextBox>
-                </div>
+                                <br />
+                                <br />
+                                <br />
+                            </div>
+                            <hr />
+                            <asp:Button class="btn btn-primary align-content-center" Style="text-align: center" Font-Size="20px" ID="Add_Table" runat="server" Text="Add Table" OnClick="Add_Table_Click" />
+                            <asp:Label ID="TableLabel" runat="server"></asp:Label>
 
-                <br />
-
-                <div class="btn-group px-3" role="group">
-                    <button type="button" class="btn btn-secondary">Item Category</button>
-                    <div class="btn-group" role="group">
-                        <asp:DropDownList class="btn btn-secondary" ID="CategoryList" runat="server"></asp:DropDownList>
+                        </div>
                     </div>
                 </div>
-                <br />
-                <br />
-                <asp:Button ID="AddItemsToMenu" runat="server" Text="Add Item" Style="text-align: center" Font-Size="20px"
-                    OnClick="AddItemsToMenu_Click"  class="btn btn-primary align-content-center" />
-
-                <hr />
-                <asp:Button class="btn btn-primary align-content-center" Style="text-align: center" Font-Size="20px" ID="Add_Table" runat="server" Text="Add Table" OnClick="Add_Table_Click" />
-                <br />
-                <br />
-                <asp:Label ID="TableLabel" runat="server"></asp:Label>
-                <br />
+            </div>
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                    <div class="card card-body">
+                        <div style="display: flex; justify-content: center">
+                            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Height="354px" Width="505px"
+                                AutoGenerateDeleteButton="True" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDeleting="OnRowDeleting">
+                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
+                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                            </asp:GridView>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+            </div>
+        <%------------------------------------%>
     </div>
 </asp:Content>

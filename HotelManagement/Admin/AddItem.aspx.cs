@@ -11,8 +11,8 @@ namespace HotelManagement.Admin
 {
     public partial class AddItem : System.Web.UI.Page
     {
-        AdminServiceClient ad = new AdminServiceClient();
-        ItemsServiceClient items = new ItemsServiceClient();
+        ItemsServiceClient ItemsService = new ItemsServiceClient();
+        AdminServiceClient AdminService = new AdminServiceClient();
         protected void Page_Load(object sender, EventArgs e)
         {
             var ses = (SessionDTO)Session["user"];
@@ -21,16 +21,19 @@ namespace HotelManagement.Admin
                 if (!IsPostBack)
                 {
                     CategoryDropDownList();
+                    RefreshGrid(sender, e);
+
                 }
             }
             else
                 Response.Redirect("~/Pages/Login.aspx");
 
 
+
         }
         private void CategoryDropDownList()
         {
-            DataTable Tables = items.GetCategory();
+            DataTable Tables = ItemsService.GetCategory();
             for (int i = 0; i < Tables.Rows.Count; i++)
             {
                 CategoryList.Items.Insert(i, new ListItem(
@@ -53,11 +56,11 @@ namespace HotelManagement.Admin
                     TotalQuantity = 0,
                     ItemActive = true
                 };
-                bool b = ad.AddItemsToMenu(i);
+                bool b = AdminService.AddItemsToMenu(i);
                 Response.Write(b ? "Item Added To Menu" : "Item Not Add , Error !!!");
                 ItemName.Text = "";
                 Price.Text = "";
-
+                RefreshGrid(sender, e);
             }
             else
             {
@@ -67,8 +70,33 @@ namespace HotelManagement.Admin
 
         protected void Add_Table_Click(object sender, EventArgs e)
         {
-            TableLabel.Text = ad.AddTables() ? "Table Added"
+            TableLabel.Text = AdminService.AddTables() ? "Table Added"
                                : "Something Went Wrong !!! ...Error";
+
+        }
+
+        protected void RefreshGrid(object sender, EventArgs e)
+        {
+            DataTable dt = ItemsService.GetMenu();
+            GridView1.DataSource = dt.DefaultView;
+            GridView1.DataBind();
+        }
+        protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int x = Convert.ToInt32(e.Values[0]);
+            var t = AdminService.DeleteItemsFromMenu(x) ?
+                            "Item Removed" : "Error !! item Not Removed";
+            Response.Write(t);
+            RefreshGrid(sender, e);
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+        }
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
