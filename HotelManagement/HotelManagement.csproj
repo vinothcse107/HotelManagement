@@ -123,15 +123,12 @@
     <Content Include="Connected Services\HotelService\HotelManagement.HotelService.OrderListDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\HotelService\HotelManagement.HotelService.WaiterOrderListGroupBy.datasource">
+    <Content Include="Connected Services\HotelService\HotelManagement.HotelService.GroupByOrderList.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\HotelService\HotelService.disco" />
     <None Include="Connected Services\HotelService\configuration91.svcinfo" />
     <None Include="Connected Services\HotelService\configuration.svcinfo" />
-    <None Include="Connected Services\HotelService\HotelService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\HotelService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -141,8 +138,6 @@
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="CookDash.aspx" />
-    <Content Include="Cook\CookDash.aspx" />
     <Content Include="CSS\AdminImg.css" />
     <Content Include="CSS\SiteCss.css" />
     <Content Include="Images\AdminImage.jpg" />
@@ -200,7 +195,6 @@
     <None Include="Connected Services\HotelService\HotelService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Cook\Cook.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -353,27 +347,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="CookDash.aspx.cs">
-      <DependentUpon>CookDash.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CookDash.aspx.designer.cs">
-      <DependentUpon>CookDash.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Cook\Cook.Master.cs">
-      <DependentUpon>Cook.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cook\Cook.Master.designer.cs">
-      <DependentUpon>Cook.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Cook\CookDash.aspx.cs">
-      <DependentUpon>CookDash.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cook\CookDash.aspx.designer.cs">
-      <DependentUpon>CookDash.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AdminControls.aspx.cs">
       <DependentUpon>AdminControls.aspx</DependentUpon>

@@ -13,11 +13,16 @@ namespace HotelWCFService.DTO
         public int Price { get; set; }
     }
 
-    public class WaiterOrderListGroupBy
+    public class GroupByOrderList
     {
         public int OrderId { get; set; }
-        public List<string> ItemName { get; set; }
-        public List<int> Quantity { get; set; }
-        public List<int> Price { get; set; }
+        public List<OrderList> Items { get; set; }
+    }
+
+    public class OrderList
+    {
+        public string ItemName { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
     }
 }

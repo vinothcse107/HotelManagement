@@ -258,7 +258,7 @@
   <xs:element name="OrderByWaiterResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="OrderByWaiterResult" nillable="true" type="q7:ArrayOfWaiterOrderListGroupBy" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" minOccurs="0" name="OrderByWaiterResult" nillable="true" type="q7:ArrayOfGroupByOrderList" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

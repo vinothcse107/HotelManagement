@@ -77,7 +77,7 @@ namespace HotelWCFService
         bool DeleteItemsFromCustomerOrder(Order_Items_Link order);
 
         [OperationContract]
-        List<WaiterOrderListGroupBy> OrderByWaiter(int WaiterId);
+        List<GroupByOrderList> OrderByWaiter(int WaiterId);
     }
 
     [ServiceContract]

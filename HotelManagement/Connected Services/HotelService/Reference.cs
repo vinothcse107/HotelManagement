@@ -355,24 +355,18 @@ namespace HotelManagement.HotelService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WaiterOrderListGroupBy", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GroupByOrderList", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
     [System.SerializableAttribute()]
-    public partial class WaiterOrderListGroupBy : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class GroupByOrderList : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] ItemNameField;
+        private HotelManagement.HotelService.OrderList[] ItemsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int OrderIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] PriceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] QuantityField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -385,14 +379,14 @@ namespace HotelManagement.HotelService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] ItemName {
+        public HotelManagement.HotelService.OrderList[] Items {
             get {
-                return this.ItemNameField;
+                return this.ItemsField;
             }
             set {
-                if ((object.ReferenceEquals(this.ItemNameField, value) != true)) {
-                    this.ItemNameField = value;
-                    this.RaisePropertyChanged("ItemName");
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
                 }
             }
         }
@@ -410,13 +404,64 @@ namespace HotelManagement.HotelService {
             }
         }
         
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderList", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
+    [System.SerializableAttribute()]
+    public partial class OrderList : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ItemNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuantityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] Price {
+        public string ItemName {
+            get {
+                return this.ItemNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemNameField, value) != true)) {
+                    this.ItemNameField = value;
+                    this.RaisePropertyChanged("ItemName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Price {
             get {
                 return this.PriceField;
             }
             set {
-                if ((object.ReferenceEquals(this.PriceField, value) != true)) {
+                if ((this.PriceField.Equals(value) != true)) {
                     this.PriceField = value;
                     this.RaisePropertyChanged("Price");
                 }
@@ -424,12 +469,12 @@ namespace HotelManagement.HotelService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] Quantity {
+        public int Quantity {
             get {
                 return this.QuantityField;
             }
             set {
-                if ((object.ReferenceEquals(this.QuantityField, value) != true)) {
+                if ((this.QuantityField.Equals(value) != true)) {
                     this.QuantityField = value;
                     this.RaisePropertyChanged("Quantity");
                 }
@@ -863,10 +908,10 @@ namespace HotelManagement.HotelService {
         System.Threading.Tasks.Task<bool> DeleteItemsFromCustomerOrderAsync(HotelManagement.HotelService.Order_Items_Link order);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/OrderByWaiter", ReplyAction="http://tempuri.org/IItemsService/OrderByWaiterResponse")]
-        HotelManagement.HotelService.WaiterOrderListGroupBy[] OrderByWaiter(int WaiterId);
+        HotelManagement.HotelService.GroupByOrderList[] OrderByWaiter(int WaiterId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/OrderByWaiter", ReplyAction="http://tempuri.org/IItemsService/OrderByWaiterResponse")]
-        System.Threading.Tasks.Task<HotelManagement.HotelService.WaiterOrderListGroupBy[]> OrderByWaiterAsync(int WaiterId);
+        System.Threading.Tasks.Task<HotelManagement.HotelService.GroupByOrderList[]> OrderByWaiterAsync(int WaiterId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -992,11 +1037,11 @@ namespace HotelManagement.HotelService {
             return base.Channel.DeleteItemsFromCustomerOrderAsync(order);
         }
         
-        public HotelManagement.HotelService.WaiterOrderListGroupBy[] OrderByWaiter(int WaiterId) {
+        public HotelManagement.HotelService.GroupByOrderList[] OrderByWaiter(int WaiterId) {
             return base.Channel.OrderByWaiter(WaiterId);
         }
         
-        public System.Threading.Tasks.Task<HotelManagement.HotelService.WaiterOrderListGroupBy[]> OrderByWaiterAsync(int WaiterId) {
+        public System.Threading.Tasks.Task<HotelManagement.HotelService.GroupByOrderList[]> OrderByWaiterAsync(int WaiterId) {
             return base.Channel.OrderByWaiterAsync(WaiterId);
         }
     }

@@ -157,7 +157,7 @@ namespace HotelWCFService
             }
         }
 
-        public List<WaiterOrderListGroupBy> OrderByWaiter(int WaiterId)
+        public List<GroupByOrderList> OrderByWaiter(int WaiterId)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -167,13 +167,17 @@ namespace HotelWCFService
                 var list = GenConList<WaiterOrderList>.ExecutorGen(cmd);
 
                 var y = list.GroupBy(i => i.OrderId).Select(s =>
-                    new WaiterOrderListGroupBy
-                    {
-                        OrderId = s.Key,
-                        ItemName = s.Select(x => x.ItemName).ToList(),
-                        Quantity = s.Select(x => x.Quantity).ToList(),
-                        Price = s.Select(x => x.Price).ToList()
-                    }
+                                new GroupByOrderList
+                                {
+                                    OrderId = s.Key,
+                                    Items = s.Select(x =>
+                                                    new OrderList
+                                                    {
+                                                        ItemName = x.ItemName,
+                                                        Quantity = x.Quantity,
+                                                        Price = x.Price
+                                                    }).ToList()
+                                }
                 ).ToList();
                 return y;
             }

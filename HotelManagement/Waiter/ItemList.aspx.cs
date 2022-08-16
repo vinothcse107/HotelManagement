@@ -19,16 +19,16 @@ namespace HotelManagement.Waiter
                 Response.Redirect("~/Pages/Login.aspx");
             }
             var x = ItemsService.OrderByWaiter(4).ToList();
-            foreach (var v in x)
-            {
-                Response.Write(v.OrderId + " ");
-                for (int i = 0; i < v.ItemName.Length; i++)
-                {
-                    Response.Write(v.ItemName[i] + " ");
-                    Response.Write(v.Price[i] + " ");
-                    Response.Write(v.Quantity[i] + " ");
-                }
-            }
+            //foreach (var v in x)
+            //{
+            //    Response.Write(v.OrderId + " ");
+            //    for (int i = 0; i < v.ItemName.Length; i++)
+            //    {
+            //        Response.Write(v.ItemName[i] + " ");
+            //        Response.Write(v.Price[i] + " ");
+            //        Response.Write(v.Quantity[i] + " ");
+            //    }
+            //}
         }
 
     }
