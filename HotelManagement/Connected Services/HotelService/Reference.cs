@@ -355,6 +355,99 @@ namespace HotelManagement.HotelService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WaiterOrderListGroupBy", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
+    [System.SerializableAttribute()]
+    public partial class WaiterOrderListGroupBy : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] ItemNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OrderIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] PriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] QuantityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] ItemName {
+            get {
+                return this.ItemNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemNameField, value) != true)) {
+                    this.ItemNameField = value;
+                    this.RaisePropertyChanged("ItemName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OrderId {
+            get {
+                return this.OrderIdField;
+            }
+            set {
+                if ((this.OrderIdField.Equals(value) != true)) {
+                    this.OrderIdField = value;
+                    this.RaisePropertyChanged("OrderId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] Price {
+            get {
+                return this.PriceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PriceField, value) != true)) {
+                    this.PriceField = value;
+                    this.RaisePropertyChanged("Price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QuantityField, value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LoginDTO", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
     [System.SerializableAttribute()]
     public partial class LoginDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -768,6 +861,12 @@ namespace HotelManagement.HotelService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/DeleteItemsFromCustomerOrder", ReplyAction="http://tempuri.org/IItemsService/DeleteItemsFromCustomerOrderResponse")]
         System.Threading.Tasks.Task<bool> DeleteItemsFromCustomerOrderAsync(HotelManagement.HotelService.Order_Items_Link order);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/OrderByWaiter", ReplyAction="http://tempuri.org/IItemsService/OrderByWaiterResponse")]
+        HotelManagement.HotelService.WaiterOrderListGroupBy[] OrderByWaiter(int WaiterId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/OrderByWaiter", ReplyAction="http://tempuri.org/IItemsService/OrderByWaiterResponse")]
+        System.Threading.Tasks.Task<HotelManagement.HotelService.WaiterOrderListGroupBy[]> OrderByWaiterAsync(int WaiterId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -891,6 +990,14 @@ namespace HotelManagement.HotelService {
         
         public System.Threading.Tasks.Task<bool> DeleteItemsFromCustomerOrderAsync(HotelManagement.HotelService.Order_Items_Link order) {
             return base.Channel.DeleteItemsFromCustomerOrderAsync(order);
+        }
+        
+        public HotelManagement.HotelService.WaiterOrderListGroupBy[] OrderByWaiter(int WaiterId) {
+            return base.Channel.OrderByWaiter(WaiterId);
+        }
+        
+        public System.Threading.Tasks.Task<HotelManagement.HotelService.WaiterOrderListGroupBy[]> OrderByWaiterAsync(int WaiterId) {
+            return base.Channel.OrderByWaiterAsync(WaiterId);
         }
     }
     

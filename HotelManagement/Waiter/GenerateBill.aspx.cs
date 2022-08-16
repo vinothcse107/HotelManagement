@@ -29,7 +29,7 @@ namespace HotelManagement.Waiter
                 List<Tables> tables = ItemsService.GetTableList().ToList();
                 tableList.DataSource = tables;
                 tableList.DataBind();
-                Table = 1; ;
+                Table = 1;
                 Referesh_Table();
             }
         }
@@ -43,7 +43,7 @@ namespace HotelManagement.Waiter
                 Label2.Text = "Data Not Found";
                 Orderedlist.DataSource = new List<OrderListDTO>();
                 Orderedlist.DataBind();
-                Amount.Text = "Total = " + sum.ToString();
+                Amount.Text = "Total = ₹ " + sum.ToString();
             }
             else
             {
@@ -57,7 +57,7 @@ namespace HotelManagement.Waiter
                     int x = (r.Price) * (r.Quantity);
                     sum += x;
                 }
-                Amount.Text = "Total = " + sum.ToString();
+                Amount.Text = "Total = ₹ " + sum.ToString();
             }
         }
 

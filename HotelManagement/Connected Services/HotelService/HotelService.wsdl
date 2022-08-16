@@ -7,6 +7,7 @@
       <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
       <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" />
       <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.Models" />
+      <xsd:import schemaLocation="http://localhost:49931/HotelService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IHotelService_GetTables_InputMessage">
@@ -92,6 +93,12 @@
   </wsdl:message>
   <wsdl:message name="IItemsService_DeleteItemsFromCustomerOrder_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteItemsFromCustomerOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_OrderByWaiter_InputMessage">
+    <wsdl:part name="parameters" element="tns:OrderByWaiter" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_OrderByWaiter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OrderByWaiterResponse" />
   </wsdl:message>
   <wsdl:message name="IAdminService_AddItemsToMenu_InputMessage">
     <wsdl:part name="parameters" element="tns:AddItemsToMenu" />
@@ -199,6 +206,10 @@
     <wsdl:operation name="DeleteItemsFromCustomerOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/DeleteItemsFromCustomerOrder" message="tns:IItemsService_DeleteItemsFromCustomerOrder_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/DeleteItemsFromCustomerOrderResponse" message="tns:IItemsService_DeleteItemsFromCustomerOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderByWaiter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/OrderByWaiter" message="tns:IItemsService_OrderByWaiter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/OrderByWaiterResponse" message="tns:IItemsService_OrderByWaiter_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IAdminService">
@@ -361,6 +372,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteItemsFromCustomerOrder">
       <soap:operation soapAction="http://tempuri.org/IItemsService/DeleteItemsFromCustomerOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderByWaiter">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/OrderByWaiter" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

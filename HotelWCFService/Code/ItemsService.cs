@@ -156,5 +156,27 @@ namespace HotelWCFService
                 return GenCon.NonQuery(cmd);
             }
         }
+
+        public List<WaiterOrderListGroupBy> OrderByWaiter(int WaiterId)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = $"OrdersPlacedByWaiter";
+                cmd.Parameters.Add(new SqlParameter("@WaiterId", WaiterId));
+                cmd.CommandType = CommandType.StoredProcedure;
+                var list = GenConList<WaiterOrderList>.ExecutorGen(cmd);
+
+                var y = list.GroupBy(i => i.OrderId).Select(s =>
+                    new WaiterOrderListGroupBy
+                    {
+                        OrderId = s.Key,
+                        ItemName = s.Select(x => x.ItemName).ToList(),
+                        Quantity = s.Select(x => x.Quantity).ToList(),
+                        Price = s.Select(x => x.Price).ToList()
+                    }
+                ).ToList();
+                return y;
+            }
+        }
     }
 }

@@ -1,7 +1,9 @@
-﻿   <%@ Page Title="" Language="C#" MasterPageFile="~/Waiter/Waiter.Master" AutoEventWireup="true" CodeBehind="GenerateBill.aspx.cs" Inherits="HotelManagement.Waiter.GenerateBill" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Waiter/Waiter.Master" AutoEventWireup="true" CodeBehind="GenerateBill.aspx.cs" Inherits="HotelManagement.Waiter.GenerateBill" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=B612&family=Copse&family=Lato&display=swap');
+
         .td {
             border: none;
         }
@@ -94,29 +96,29 @@
             width: 100%;
             font-size: 12px;
         }
-       
+
         .raise:hover,
-.raise:focus {
-  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-  transform: translateY(-0.25em);
-  color:#ffa260 
-}
+        .raise:focus {
+            box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+            transform: translateY(-0.25em);
+            color: #ffa260
+        }
+
         button {
             background: white;
             border: 2px solid;
             font: inherit;
             line-height: 1;
-            font-size:7px;
-            font-weight:500;
-            height:45px;
-            width:40px
-            
+            font-size: 7px;
+            font-weight: 500;
+            height: 45px;
+            width: 40px
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div>
+    <div class="text-center">
         <br />
         <br />
         <div class="m-2" id="Outer">
@@ -128,12 +130,11 @@
                     <div class="btn-group" role="group">
                         <asp:DropDownList class="btn btn-secondary" ID="TablesDropDownList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="GetCurrentOrderId"></asp:DropDownList>
                     </div>--%>
-            <div style="display: flex; justify-content: center" >
+            <div style="display: flex; justify-content: center">
                 <asp:Repeater ID="tableList" runat="server">
                     <ItemTemplate>
                         <asp:Label ID="tableno" runat="server" Visible="false" Text='<%# Eval("TableId") %>'></asp:Label>
-                       
-                        <button class="raise mr-1 mb-1 px-2 py-1" runat="server" OnClick="TableNo"><%# Eval("TableId") %></button>
+                        <asp:Button class="raise mr-1 mb-1 px-2 py-1" ID="Button1" OnClick="TableNo" runat="server" Text='<%# Eval("TableId") %>' />
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
@@ -181,15 +182,16 @@
 
         </div>
         <br />
-        <div class="amount">
-            <asp:Label ID="Amount" runat="server" Text=""></asp:Label>
+        <div class="alert alert-primary amount text-center w-25" role="alert">
+            <asp:Label Style="font-family: 'Aboreto', cursive; font-weight: 900; font-size: 30px" ID="Amount" runat="server" Text=""></asp:Label>
         </div>
+
     </div>
+
+
     <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
     <br />
 
     <br />
-
-
 
 </asp:Content>

@@ -123,9 +123,15 @@
     <Content Include="Connected Services\HotelService\HotelManagement.HotelService.OrderListDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\HotelService\HotelManagement.HotelService.WaiterOrderListGroupBy.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\HotelService\HotelService.disco" />
     <None Include="Connected Services\HotelService\configuration91.svcinfo" />
     <None Include="Connected Services\HotelService\configuration.svcinfo" />
+    <None Include="Connected Services\HotelService\HotelService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\HotelService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

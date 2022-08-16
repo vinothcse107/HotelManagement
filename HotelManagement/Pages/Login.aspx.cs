@@ -10,9 +10,10 @@ namespace HotelManagement
 {
     public partial class Login : System.Web.UI.Page
     {
+        ItemsServiceClient it = new ItemsServiceClient();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
