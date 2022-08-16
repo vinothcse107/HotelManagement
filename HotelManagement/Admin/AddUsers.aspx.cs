@@ -38,13 +38,30 @@ namespace HotelManagement.Admin
                 };
 
                 var x = accountService.AddAccount(user);
-                Response.Write(x ? "User Added" : "User Not Added");
+                if(x)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("User Added successfully", "success", ""), true);
+                else
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("User Not Added", "error", ""), true);
             }
             else
             {
                 Response.Write("Fill All Required Fields");
                 Response.Write("UserName Length > 8 && < 10 Character && Password Length >8 && <16 && Phone Length = 10 Characters");
             }
+        }
+        private string CallToastr(string msg, string status, string func)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }

@@ -57,10 +57,14 @@ namespace HotelManagement.Admin
                     ItemActive = true
                 };
                 bool b = AdminService.AddItemsToMenu(i);
-                Response.Write(b ? "Item Added To Menu" : "Item Not Add , Error !!!");
-                ItemName.Text = "";
+
+               ItemName.Text = "";
                 Price.Text = "";
                 RefreshGrid(sender, e);
+                if(b)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Added To Menu successfully", "success",""), true);
+                else
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Not Added, Error !!!", "error", ""), true);
             }
             else
             {
@@ -70,9 +74,13 @@ namespace HotelManagement.Admin
 
         protected void Add_Table_Click(object sender, EventArgs e)
         {
-            TableLabel.Text = AdminService.AddTables() ? "Table Added"
-                               : "Something Went Wrong !!! ...Error";
+            var t = AdminService.AddTables(); 
+                               
 
+           if(t)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Table Added successfully", "success", ""), true);
+           else
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Something Went Wrong !!! ...Error", "error", ""), true);
         }
 
         protected void RefreshGrid(object sender, EventArgs e)
@@ -84,10 +92,13 @@ namespace HotelManagement.Admin
         protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int x = Convert.ToInt32(e.Values[0]);
-            var t = AdminService.DeleteItemsFromMenu(x) ?
-                            "Item Removed" : "Error !! item Not Removed";
-            Response.Write(t);
+            var t = AdminService.DeleteItemsFromMenu(x);
+            
             RefreshGrid(sender, e);
+            if(t)
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Removed successfully", "success", ""), true);
+            else
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! Item Not Removed", "error", ""), true);
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
@@ -97,6 +108,20 @@ namespace HotelManagement.Admin
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private string CallToastr(string msg, string status, string func)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }

@@ -73,7 +73,10 @@ namespace HotelManagement.Waiter
                     OderId = OrderNoForTable
                 });
 
-            Label2.Text = res ? "Item Deleted Successfully" : "Error !! Item Not Deleted ";
+            if(res)
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Deleted Successfully", "success", ""), true);
+            else
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! Item Not Deleted ", "error", ""), true);
             Referesh_Table();
         }
 
@@ -85,6 +88,20 @@ namespace HotelManagement.Waiter
 
             Referesh_Table();
 
+        }
+        private string CallToastr(string msg, string status, string func)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }

@@ -80,7 +80,10 @@ namespace HotelManagement.Pages
                     OderId = Convert.ToInt32(Session["OrderNo"])
                 });
 
-            Label2.Text = res ? "Item Added" : "Error !! Item Not Added";
+            if(res)
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Added", "success", ""), true);
+            else
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! Item Not Added ", "error", ""), true);
         }
         protected void ItemsByCategory(object sender, CommandEventArgs e)
         {
@@ -110,12 +113,29 @@ namespace HotelManagement.Pages
                                 Convert.ToInt32(TablesDropDownList.SelectedItem.Text),
                                 Convert.ToInt32(ses.userid));
                 Session["OrderNo"] = x;
-                Label2.Text = "Your Order No is : " + x.ToString();
+                
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Your Order No is : " + x.ToString(), "info", ""), true);
             }
             catch (FaultException ex)
             {
                 Label2.Text = ex.Message;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ex.Message, "error", ""), true);
+
             }
+        }
+        private string CallToastr(string msg, string status, string func)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }

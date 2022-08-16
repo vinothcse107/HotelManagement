@@ -69,6 +69,10 @@ namespace HotelManagement.Admin
 
             bool res = AdminService.UpdateItemTotalQuantity(id, Qty);
             Label2.Text = res ? "Item Updatd" : "Error !! Item Not Updated";
+            if(res)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Updated successfully", "success", ""), true);
+            else
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! Item Not Updated ", "error", ""), true);
 
 
         }
@@ -90,7 +94,21 @@ namespace HotelManagement.Admin
             menulist.DataSource = items;
             menulist.DataBind();
         }
+        private string CallToastr(string msg, string status, string func)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
+        }
 
-        
+
     }
 }
