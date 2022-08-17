@@ -28,6 +28,9 @@ namespace HotelWCFService
 
         [OperationContract]
         bool DeleteAccount(string username);
+
+        [OperationContract]
+        DataTable GetUsers();
     }
     [ServiceContract]
     public interface IHotelService

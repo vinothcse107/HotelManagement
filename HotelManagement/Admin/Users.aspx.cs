@@ -1,6 +1,7 @@
 ﻿using HotelManagement.HotelService;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +11,10 @@ namespace HotelManagement.Admin
 {
     public partial class AddWaiter : System.Web.UI.Page
     {
+        AccountServiceClient AccountService = new AccountServiceClient();
+        ItemsServiceClient ItemsService = new ItemsServiceClient();
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             var ses = (SessionDTO)Session["user"];
@@ -17,7 +22,9 @@ namespace HotelManagement.Admin
             {
                 Response.Redirect("~/Pages/Login.aspx");
             }
-
+            var x = AccountService.GetUsers();
+            GridView1.DataSource = x;
+            GridView1.DataBind();
         }
 
         protected void Add_Waiter(object sender, EventArgs e)
@@ -38,7 +45,7 @@ namespace HotelManagement.Admin
                 };
 
                 var x = accountService.AddAccount(user);
-                if(x)
+                if (x)
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("User Added successfully", "success", ""), true);
                 else
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("User Not Added", "error", ""), true);
@@ -62,6 +69,31 @@ namespace HotelManagement.Admin
             sb.Append("');");
             sb.Append("})");
             return sb.ToString();
+        }
+        protected void RefreshGrid(object sender, EventArgs e)
+        {
+            DataTable dt = AccountService.GetUsers();
+            GridView1.DataSource = dt.DefaultView;
+            GridView1.DataBind();
+        }
+
+        protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            var t = AccountService.DeleteAccount(e.Values[1].ToString());
+            RefreshGrid(sender, e);
+            if (t)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("User Removed successfully", "success", ""), true);
+            else
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! User Not Removed", "error", ""), true);
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+        }
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1162,6 +1162,12 @@ namespace HotelManagement.HotelService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/DeleteAccount", ReplyAction="http://tempuri.org/IAccountService/DeleteAccountResponse")]
         System.Threading.Tasks.Task<bool> DeleteAccountAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/GetUsers", ReplyAction="http://tempuri.org/IAccountService/GetUsersResponse")]
+        System.Data.DataTable GetUsers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountService/GetUsers", ReplyAction="http://tempuri.org/IAccountService/GetUsersResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetUsersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1221,6 +1227,14 @@ namespace HotelManagement.HotelService {
         
         public System.Threading.Tasks.Task<bool> DeleteAccountAsync(string username) {
             return base.Channel.DeleteAccountAsync(username);
+        }
+        
+        public System.Data.DataTable GetUsers() {
+            return base.Channel.GetUsers();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetUsersAsync() {
+            return base.Channel.GetUsersAsync();
         }
     }
 }

@@ -17,6 +17,15 @@ namespace HotelWCFService
             waiter = 2,
             user = 3
         }
+        public DataTable GetUsers()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = $"SELECT * FROM Users";
+                var list = GenCon.Executor(cmd);
+                return list;
+            }
+        }
         public ResponseDTO Login(LoginDTO user)
         {
             using (SqlCommand cmd = new SqlCommand())

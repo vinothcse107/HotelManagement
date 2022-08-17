@@ -10,20 +10,20 @@
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
         <link rel="stylesheet" href="../CSS/AdminImg.css" type="text/css" />
     </asp:ContentPlaceHolder>
-    <asp:PlaceHolder runat="server">        
-        
+    <asp:PlaceHolder runat="server">
+
         <%: Styles.Render("~/Content/css") %>
-   <%: Styles.Render("~/Content/toastr") %>
+        <%: Styles.Render("~/Content/toastr") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         
               
-        </asp:PlaceHolder>
+    </asp:PlaceHolder>
     <asp:PlaceHolder runat="server">
-        
+
         <%: Scripts.Render("~/bundles/MsAjaxJs") %>
-        
+
         <%: Scripts.Render("~/bundles/bootstrap") %>
-        
+
         <%: Scripts.Render("~/bundles/jquery") %>
         <%: Scripts.Render("~/bundles/toastr") %>
     </asp:PlaceHolder>
@@ -33,43 +33,53 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Lato&family=Libre+Barcode+39&family=Pacifico&display=swap');
     </style>
-    <style> #toast-container > .toast-success { background-color: #51a351 } 
- #toast-container> .toast-error{ background-color:#BD362F;}
-  #toast-container> .toast-warning{ background-color:#2f96b4;}
-   #toast-container> .toast-info{ background-color:#f89406;}
+    <style>
+        #toast-container > .toast-success {
+            background-color: #51a351
+        }
 
+        #toast-container > .toast-error {
+            background-color: #BD362F;
+        }
+
+        #toast-container > .toast-warning {
+            background-color: #2f96b4;
+        }
+
+        #toast-container > .toast-info {
+            background-color: #f89406;
+        }
     </style>
- <script type="text/javascript">
-     function ToastrNotification(msg, status, func) {
-         toastr.options = {
-             "closeButton": true,
-             "debug": false,
-             "newestOnTop": true,
-             "progressBar": true,
-             "positionClass": "toast-top-right",
-             "preventDuplicates": true,
-             "onclick": null,
-             "showDuration": "3000",
-             "hideDuration": "100",
-             "timeOut": "15000",
-             "extendedTimeOut": "1000",
-             "showEasing": "swing",
-             "hideEasing": "linear",
-             "showMethod": "fadeIn",
-             "hideMethod": "fadeOut",
-             "onHidden": function () { window.location = func; }
-         }
-         toastr[status](msg);
-     };
-     </script>
+    <script type="text/javascript">
+        function ToastrNotification(msg, status, func) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "3000",
+                "hideDuration": "100",
+                "timeOut": "15000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+                "onHidden": function () { window.location = func; }
+            }
+            toastr[status](msg);
+        };
+    </script>
 
 </head>
 <body style="overflow-y: hidden">
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
+
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
@@ -82,7 +92,6 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
 
@@ -100,10 +109,10 @@
                             <a class="nav-link" runat="server" href="AdminMenu">Menu<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" runat="server" href="AddItem">Items</a>
+                            <a class="nav-link" runat="server" href="Items">Items</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" runat="server" href="AddUsers">Add Staff</a>
+                            <a class="nav-link" runat="server" href="Users">Add Staff</a>
                         </li>
                     </ul>
                     <div class="nav-item dropdown">
@@ -118,39 +127,6 @@
                     </div>
                 </div>
             </nav>
-
-            <%--<nav  class="navbar navbar-expand-lg navbar-dark bg-dark" >
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-       
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Add Staff <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Add Item</a>
-                </li>
-
-
-            </ul>
-
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Name</a>
-                    <a class="dropdown-item" href="#">Admin</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Log Out</a>
-                </div>
-            </div>
-
-        </div>
-    </nav>--%>
             <div class="bac" style="background-image: url('../Images/AdminImage.jpg'); min-height: 100vh; background-size: cover; background-repeat: no-repeat; background-position: center center; background-attachment: fixed;">
                 <div class="container body-content" style="text-align: center">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

@@ -147,6 +147,12 @@
   <wsdl:message name="IAccountService_DeleteAccount_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteAccountResponse" />
   </wsdl:message>
+  <wsdl:message name="IAccountService_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IAccountService_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IHotelService">
     <wsdl:operation name="GetTables">
       <wsdl:input wsaw:Action="http://tempuri.org/IHotelService/GetTables" message="tns:IHotelService_GetTables_InputMessage" />
@@ -245,6 +251,10 @@
     <wsdl:operation name="DeleteAccount">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/DeleteAccount" message="tns:IAccountService_DeleteAccount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/DeleteAccountResponse" message="tns:IAccountService_DeleteAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountService/GetUsers" message="tns:IAccountService_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountService/GetUsersResponse" message="tns:IAccountService_GetUsers_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IHotelService" type="tns:IHotelService">
@@ -458,6 +468,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteAccount">
       <soap:operation soapAction="http://tempuri.org/IAccountService/DeleteAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/IAccountService/GetUsers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

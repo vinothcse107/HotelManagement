@@ -106,11 +106,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\AddItem.aspx" />
-    <Content Include="Admin\AddUsers.aspx" />
+    <Content Include="Admin\Items.aspx" />
+    <Content Include="Admin\Users.aspx" />
     <Content Include="Admin\AdminMenu.aspx" />
     <Content Include="Admin\DeleteItem.aspx" />
-    <Content Include="Admin\EmployeeList.aspx" />
     <Content Include="Connected Services\HotelService\HotelManagement.HotelService.ResponseDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -317,19 +316,19 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\AddItem.aspx.cs">
-      <DependentUpon>AddItem.aspx</DependentUpon>
+    <Compile Include="Admin\Items.aspx.cs">
+      <DependentUpon>Items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\AddItem.aspx.designer.cs">
-      <DependentUpon>AddItem.aspx</DependentUpon>
+    <Compile Include="Admin\Items.aspx.designer.cs">
+      <DependentUpon>Items.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\AddUsers.aspx.cs">
-      <DependentUpon>AddUsers.aspx</DependentUpon>
+    <Compile Include="Admin\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\AddUsers.aspx.designer.cs">
-      <DependentUpon>AddUsers.aspx</DependentUpon>
+    <Compile Include="Admin\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
@@ -351,13 +350,6 @@
     </Compile>
     <Compile Include="Admin\DeleteItem.aspx.designer.cs">
       <DependentUpon>DeleteItem.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\EmployeeList.aspx.cs">
-      <DependentUpon>EmployeeList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\EmployeeList.aspx.designer.cs">
-      <DependentUpon>EmployeeList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\HotelService\Reference.cs">
       <AutoGen>True</AutoGen>
