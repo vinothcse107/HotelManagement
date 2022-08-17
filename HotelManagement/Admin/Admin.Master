@@ -10,18 +10,21 @@
     <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
         <link rel="stylesheet" href="../CSS/AdminImg.css" type="text/css" />
     </asp:ContentPlaceHolder>
-    <asp:PlaceHolder runat="server">
+    <asp:PlaceHolder runat="server">        
         
         <%: Styles.Render("~/Content/css") %>
-        <%: Scripts.Render("~../bundles/modernizr") %>
-  
-        <%: Scripts.Render("~/bundles/modernizr") %>
    <%: Styles.Render("~/Content/toastr") %>
+        <%: Scripts.Render("~/bundles/modernizr") %>
+        
+              
         </asp:PlaceHolder>
     <asp:PlaceHolder runat="server">
+        
         <%: Scripts.Render("~/bundles/MsAjaxJs") %>
-        <%: Scripts.Render("~/bundles/jquery") %>
+        
         <%: Scripts.Render("~/bundles/bootstrap") %>
+        
+        <%: Scripts.Render("~/bundles/jquery") %>
         <%: Scripts.Render("~/bundles/toastr") %>
     </asp:PlaceHolder>
 
@@ -148,7 +151,7 @@
 
         </div>
     </nav>--%>
-            <div class="bac" style="background-image: url('../Images/AdminImage.jpg'); min-height: 100%; background-size: cover; background-repeat: no-repeat; background-position: center center; background-attachment: fixed;">
+            <div class="bac" style="background-image: url('../Images/AdminImage.jpg'); min-height: 100vh; background-size: cover; background-repeat: no-repeat; background-position: center center; background-attachment: fixed;">
                 <div class="container body-content" style="text-align: center">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>

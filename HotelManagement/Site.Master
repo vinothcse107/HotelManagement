@@ -64,9 +64,10 @@
                 </ul>
             </div>
             </nav>
-         <div style="background-image: url('../Images/LoginImg.jpg'); background-attachment: fixed; width:100%; background-size:cover; background-repeat:no-repeat ">
+         <div style="background-image: url('../Images/LoginImg.jpg'); background-attachment: fixed; width:100%; background-size:cover; background-repeat:no-repeat; min-height: 100vh;  background-size: cover;
+   background-repeat: no-repeat; ">
    
-        <div class="container body-content"    >
+        <div class="container body-content"  text-align:"center"   >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
