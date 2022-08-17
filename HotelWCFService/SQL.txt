@@ -98,18 +98,39 @@ CREATE PROCEDURE AddItemstoOrder
 	@Quantity int
 )
 AS   
+	DECLARE @QuantityAvailale int;
 	IF @ItemId NOT IN (SELECT i.ItemId from Order_Items_Link x
 			join Items i on x.ItemId = i.ItemId where x.OrderId = @OrderId)
 		BEGIN
-			INSERT INTO Order_Items_Link VALUES(@ItemId , @OrderId, @Quantity)
+			SET @QuantityAvailale = (SELECT y.TotalQuantity FROM Items y WHERE y.ItemId = @ItemId)
+			IF @Quantity > @QuantityAvailale
+				BEGIN	
+					INSERT INTO Order_Items_Link VALUES(@ItemId , @OrderId, @QuantityAvailale)
+					UPDATE Items set TotalQuantity = 0 where ItemId = @ItemId;
+				END
+			ELSE
+				BEGIN
+					INSERT INTO Order_Items_Link VALUES(@ItemId , @OrderId, @Quantity)	
+					UPDATE Items set TotalQuantity = @QuantityAvailale - @Quantity  where ItemId = @ItemId;
+				END
 		END
 	ELSE
-		BEGIN
-			UPDATE Order_Items_Link SET Quantity = @Quantity 
-			WHERE OrderId = @OrderId AND  ItemId= @ItemId
-		END
+			BEGIN
+					SET @QuantityAvailale = (SELECT y.TotalQuantity FROM Items y WHERE y.ItemId = @ItemId)
+					IF @Quantity > @QuantityAvailale
+						BEGIN	
+							UPDATE Order_Items_Link SET Quantity = @Quantity 
+									WHERE OrderId = @OrderId AND  ItemId= @ItemId
+							UPDATE Items set TotalQuantity = 0 where ItemId = @ItemId;
+						END
+					ELSE
+						BEGIN
+							UPDATE Order_Items_Link SET Quantity = @Quantity 
+										WHERE OrderId = @OrderId AND  ItemId= @ItemId
+							UPDATE Items set TotalQuantity = @QuantityAvailale - @Quantity  where ItemId = @ItemId;
+						END
+			END
 GO
-
 -- //////////////---------///////////
 
 CREATE PROCEDURE DeleteItem(@ItemId INT)
@@ -179,6 +200,21 @@ AS
 	SELECT SUM(i.Price * o.Quantity) as Revenue
 	from Order_Items_Link o JOIN Items i 
 	on o.ItemId = i.ItemId where o.OrderId IN (SELECT x.Id from Orders x)
+GO
+
+-- //////////////---------///////////
+
+CREATE PROCEDURE DeleteItemFromMenu
+(
+	@OrderId int,
+	@ItemId int 
+)
+AS 
+	DECLARE @AddedQty INT , @AvailableQty int
+	SET @AddedQty =  (SELECT Quantity FROM Order_Items_Link WHERE OrderId = @OrderId AND ItemId = @ItemId)
+	SET @AvailableQty = (SELECT TotalQuantity FROM Items Where ItemId = @ItemId)
+	UPDATE Items SET TotalQuantity = @AvailableQty + @AddedQty WHERE ItemId = @ItemId
+	DELETE FROM Order_Items_Link WHERE OrderId = @OrderId AND ItemId = @ItemId
 GO
 
 -- //////////////---------///////////

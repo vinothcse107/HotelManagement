@@ -16,7 +16,7 @@ namespace HotelManagement.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var ses = (SessionDTO)Session["user"];
+            var ses = (SessionDTO)Session["admin"];
             if (ses != null && ses.role.Equals("admin") && ses.sid != null)
             {
                 if (!IsPostBack)

@@ -19,14 +19,14 @@ namespace HotelManagement
             {
                 AccountServiceClient accountService = new AccountServiceClient();
                 DataTable Tables = accountService.GetRoles();
-                for (int i = 0; i < Tables.Rows.Count; i++)
-                {
-                    RolesDropDownList.Items.Insert(i, new ListItem(
-                        Tables.Rows[i].ItemArray[1].ToString(),
-                        Tables.Rows[i].ItemArray[0].ToString()
-                    ));
-                }
-                RolesDropDownList.DataBind();
+                //for (int i = 0; i < Tables.Rows.Count; i++)
+                //{
+                //    RolesDropDownList.Items.Insert(i, new ListItem(
+                //        Tables.Rows[i].ItemArray[1].ToString(),
+                //        Tables.Rows[i].ItemArray[0].ToString()
+                //    ));
+                //}
+                //RolesDropDownList.DataBind();
             }
         }
 
@@ -64,7 +64,7 @@ namespace HotelManagement
                 Username = username.Text.ToLower(),
                 Password = password.Text.ToString(),
                 Phone = phone.Text.ToString(),
-                Roleid = Convert.ToInt32(RolesDropDownList.SelectedItem.Value)
+                //Roleid = Convert.ToInt32(RolesDropDownList.SelectedItem.Value)
             };
 
             var x = accountService.AddAccount(user);

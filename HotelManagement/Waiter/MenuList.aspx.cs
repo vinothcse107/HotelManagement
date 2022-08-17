@@ -80,8 +80,10 @@ namespace HotelManagement.Pages
                     OderId = Convert.ToInt32(Session["OrderNo"])
                 });
 
-            if(res)
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Added", "success", ""), true);
+            if (res)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Added", "success", ""), true);
+            }
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! Item Not Added ", "error", ""), true);
         }
@@ -113,7 +115,7 @@ namespace HotelManagement.Pages
                                 Convert.ToInt32(TablesDropDownList.SelectedItem.Text),
                                 Convert.ToInt32(ses.userid));
                 Session["OrderNo"] = x;
-                
+
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Your Order No is : " + x.ToString(), "info", ""), true);
             }
             catch (FaultException ex)

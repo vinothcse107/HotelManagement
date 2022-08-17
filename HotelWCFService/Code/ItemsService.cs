@@ -152,7 +152,12 @@ namespace HotelWCFService
         {
             using (SqlCommand cmd = new SqlCommand())
             {
-                cmd.CommandText = $"DELETE FROM Order_Items_Link WHERE OrderId = {order.OderId} AND ItemId = {order.ItemId}";
+                cmd.CommandText = $"dbo.DeleteItemFromMenu";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddRange(new SqlParameter[] {
+                        new SqlParameter("@ItemId", order.ItemId) ,
+                        new SqlParameter("@OrderId", order.OderId)
+                    });
                 return GenCon.NonQuery(cmd);
             }
         }

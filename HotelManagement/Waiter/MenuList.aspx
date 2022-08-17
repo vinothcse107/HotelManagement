@@ -132,6 +132,8 @@
                             </th>
                             <th scope="col" style="width: 100px">Add Item
                             </th>
+                            <th scope="col" style="width: 100px">Availablity
+                            </th>
 
                         </tr>
                 </HeaderTemplate>
@@ -147,11 +149,18 @@
                         <td>
                             <asp:Label ID="itprice" runat="server" Text='<%# Eval("Price") %>' />
                         </td>
+
                         <td class="Quantity">
-                            <asp:TextBox ID="Quantity" runat="server" Width="50px" required min="0" max="500" Text="0" type="number"></asp:TextBox>
+                            <asp:TextBox ID="Quantity" runat="server" Width="50px" required min="0" max="500" Enabled='<%# (int)Eval("TotalQuantity") == 0 ? false : true%>' Text="0" type="number"></asp:TextBox>
                         </td>
                         <td>
                             <asp:Button ID="AddBtn" runat="server" class="btn btn-success" Text="Add" OnClick="Add_Click" CommandArgument='<%# Eval("ItemId")  %>' />
+                        </td>
+                        <td>
+
+                            <asp:Label Text='<%# (int)Eval("TotalQuantity") > 0 ? "Available" : "Not Available" %>'
+                                class='<%# (int)Eval("TotalQuantity") > 0 ? "bg-success" : "bg-danger" %>'
+                                runat="server" />
                         </td>
                     </tr>
                 </ItemTemplate>

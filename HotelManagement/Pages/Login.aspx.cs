@@ -27,19 +27,31 @@ namespace HotelManagement
             ResponseDTO rt = ac.Login(loginDTO);
             if (rt.access)
             {
-                var ses = new SessionDTO()
-                {
-                    userid = rt.userId,
-                    username = rt.username,
-                    role = rt.role,
-                    sid = Session.SessionID
-                };
-                Session["user"] = ses;
-
                 if (rt.role.Equals("admin"))
+                {
+                    var ad = new SessionDTO()
+                    {
+                        userid = rt.userId,
+                        username = rt.username,
+                        role = rt.role,
+                        sid = Session.SessionID
+                    };
+                    Session["admin"] = ad;
                     Response.Redirect("~/Admin/AdminMenu.aspx");
+                }
                 else if (rt.role.Equals("waiter"))
+                {
+
+                    var ses = new SessionDTO()
+                    {
+                        userid = rt.userId,
+                        username = rt.username,
+                        role = rt.role,
+                        sid = Session.SessionID
+                    };
+                    Session["user"] = ses;
                     Response.Redirect("~/Waiter/MenuList.aspx");
+                }
             }
             else
                 ResponseLabel.Text = rt.message.ToString();
