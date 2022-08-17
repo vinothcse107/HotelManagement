@@ -3,24 +3,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-    <section class=""
-        style="overflow: hidden">
+    <section class=" text-light"
+        style="overflow: hidden; margin-left:350px">
 
-        <div class="container-fluid" style="text-align: center; width: 400px;">
-            <div class="text-light">
+        <div class="container-fluid " style="text-align: center; width: 400px;">
+            <div class="text-light;">
                 <br />
                 <br />
                 <br />
                 <br />
                 <br />
                 <h3 class=" mb-3 pb-3 " style="letter-spacing: 1px;">Log in</h3>
-                <div class="mb-4">
+                <div class="mb-4 text-light">
                     <label class="form-label">Username </label>
                     <br />
                     <asp:TextBox type="text" ID="username" Style="text-align: center" class="form-control" Text="LogeshS" runat="server"></asp:TextBox>
 
                 </div>
-                <div class="mb-4" style="text-align: center">
+                <div class="mb-4 text-light" style="text-align: center">
                     <label class="form-label" for="Passtxt">Password</label><br />
                     <asp:TextBox type="password" ID="password" Style="text-align: center" class="form-control" runat="server" Text="LogeshS"></asp:TextBox>
 

@@ -182,9 +182,11 @@
 
         </div>
         <br />
-        <div class="alert alert-primary amount text-center w-25" role="alert">
-            <asp:Label Style="font-family: 'Aboreto', cursive; font-weight: 900; font-size: 30px" ID="Amount" runat="server" Text=""></asp:Label>
+        <div class="total " >
+        <div class="bg-primary amount text-center " style="margin-left:815px; border-radius:5px; width: max-content"  role="alert">
+            <asp:Label Style="font-family: 'Aboreto', cursive; font-weight: 600; font-size: 25px; padding:3px; color:white" ID="Amount" runat="server" Text=""></asp:Label>
         </div>
+            </div>
     </div>
     <br />
     <br />

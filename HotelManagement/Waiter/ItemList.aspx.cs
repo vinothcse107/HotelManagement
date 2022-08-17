@@ -16,9 +16,11 @@ namespace HotelManagement.Waiter
             var ses = (SessionDTO)Session["user"];
             if (!(ses != null && ses.role.Equals("waiter") && ses.sid != null))
             {
-                Response.Redirect("~/Pages/Login.aspx");
+                Response.Redirect("~/https://localhost:44341/Waiter/ItemList.aspx.csPages/Login.aspx");
             }
             var x = ItemsService.OrderByWaiter(4).ToList();
+
+
             //foreach (var v in x)
             //{
             //    Response.Write(v.OrderId + " ");
