@@ -12,11 +12,16 @@
             <div id="DivAddItems" style="margin-left: 15px; border-radius: 10px; width: 488px; background-color: aliceblue; color: #000000;">
                 <br />
                 <br />
-                <asp:DropDownList class="btn btn-secondary" ID="DropDownList1" runat="server">
-                    <asp:ListItem class="text-center" Value="2">Waiter</asp:ListItem>
-                    <asp:ListItem class="text-center" Value="1">Admin</asp:ListItem>
+                <div class="btn-group px-3" role="group">
+                    <button type="button" class="btn btn-secondary">Role</button>
+                    <div class="btn-group" role="group">
+                        <asp:DropDownList class="btn btn-secondary" ID="DropDownList1" runat="server">
+                            <asp:ListItem class="text-center" Value="2">Waiter</asp:ListItem>
+                            <asp:ListItem class="text-center" Value="1">Admin</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
 
-                </asp:DropDownList>
 
                 <br />
                 <br />

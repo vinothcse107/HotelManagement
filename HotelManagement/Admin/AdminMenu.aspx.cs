@@ -28,38 +28,12 @@ namespace HotelManagement.Admin
             {
                 if (!IsPostBack)
                 {
-                    DropDownList(); //Add Dynamic Table Values to DropDown
-
-                    // Bind Items To Repeter List
                     List<Items> items = ItemsService.GetMenuByCategoryId(Category).ToList();
                     menulist.DataSource = items;
                     menulist.DataBind();
-
-                    // Get the Current Active Order For Table Add Set the Order Id 
-                    GetCurrentOrderId(sender, e);
                 }
             }
-
         }
-
-        protected void GetCurrentOrderId(object sender, EventArgs e)
-        {
-            int x = ItemsService.ExistingOrderForTable(Convert.ToInt32(TablesDropDownList.SelectedItem.Text));
-            Session["OrderNo"] = x;
-        }
-        private void DropDownList()
-        {
-            DataTable Tables = dt.GetTables();
-            for (int i = 0; i < Tables.Rows.Count; i++)
-            {
-                TablesDropDownList.Items.Insert(i, new ListItem(
-                          Tables.Rows[i].ItemArray[0].ToString(),
-                          Tables.Rows[i].ItemArray[0].ToString())
-                      );
-            }
-            TablesDropDownList.DataBind();
-        }
-      
         protected void Update_Click(object sender, EventArgs e)
         {
             RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
@@ -68,8 +42,7 @@ namespace HotelManagement.Admin
 
 
             bool res = AdminService.UpdateItemTotalQuantity(id, Qty);
-            Label2.Text = res ? "Item Updatd" : "Error !! Item Not Updated";
-            if(res)
+            if (res)
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Updated successfully", "success", ""), true);
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! Item Not Updated ", "error", ""), true);

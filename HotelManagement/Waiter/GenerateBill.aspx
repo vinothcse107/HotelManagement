@@ -185,13 +185,7 @@
         <div class="alert alert-primary amount text-center w-25" role="alert">
             <asp:Label Style="font-family: 'Aboreto', cursive; font-weight: 900; font-size: 30px" ID="Amount" runat="server" Text=""></asp:Label>
         </div>
-
     </div>
-
-
-    <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
     <br />
-
     <br />
-
 </asp:Content>

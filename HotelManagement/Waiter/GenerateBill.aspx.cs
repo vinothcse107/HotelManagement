@@ -40,7 +40,6 @@ namespace HotelManagement.Waiter
             int sum = 0;
             if (items.Count == 0)
             {
-                Label2.Text = "Data Not Found";
                 Orderedlist.DataSource = new List<OrderListDTO>();
                 Orderedlist.DataBind();
                 Amount.Text = "Total = ₹ " + sum.ToString();
@@ -49,7 +48,6 @@ namespace HotelManagement.Waiter
             {
                 Orderedlist.DataSource = items;
                 Orderedlist.DataBind();
-                Label2.Text = "";
 
                 sum = 0;
                 foreach (OrderListDTO r in items)
@@ -73,8 +71,8 @@ namespace HotelManagement.Waiter
                     OderId = OrderNoForTable
                 });
 
-            if(res)
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Deleted Successfully", "success", ""), true);
+            if (res)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Deleted Successfully", "success", ""), true);
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! Item Not Deleted ", "error", ""), true);
             Referesh_Table();

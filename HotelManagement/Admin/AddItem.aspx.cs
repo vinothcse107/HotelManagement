@@ -22,14 +22,10 @@ namespace HotelManagement.Admin
                 {
                     CategoryDropDownList();
                     RefreshGrid(sender, e);
-
                 }
             }
             else
                 Response.Redirect("~/Pages/Login.aspx");
-
-
-
         }
         private void CategoryDropDownList()
         {
@@ -58,11 +54,11 @@ namespace HotelManagement.Admin
                 };
                 bool b = AdminService.AddItemsToMenu(i);
 
-               ItemName.Text = "";
+                ItemName.Text = "";
                 Price.Text = "";
                 RefreshGrid(sender, e);
-                if(b)
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Added To Menu successfully", "success",""), true);
+                if (b)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Added To Menu successfully", "success", ""), true);
                 else
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Not Added, Error !!!", "error", ""), true);
             }
@@ -74,12 +70,10 @@ namespace HotelManagement.Admin
 
         protected void Add_Table_Click(object sender, EventArgs e)
         {
-            var t = AdminService.AddTables(); 
-                               
-
-           if(t)
+            var t = AdminService.AddTables();
+            if (t)
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Table Added successfully", "success", ""), true);
-           else
+            else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Something Went Wrong !!! ...Error", "error", ""), true);
         }
 
@@ -93,10 +87,10 @@ namespace HotelManagement.Admin
         {
             int x = Convert.ToInt32(e.Values[0]);
             var t = AdminService.DeleteItemsFromMenu(x);
-            
+
             RefreshGrid(sender, e);
-            if(t)
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Removed successfully", "success", ""), true);
+            if (t)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item Removed successfully", "success", ""), true);
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Error !! Item Not Removed", "error", ""), true);
         }

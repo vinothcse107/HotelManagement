@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="AdminMenu.aspx.cs" Inherits="HotelManagement.Admin.AdminMenu" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
-      <style>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=B612&family=Copse&family=Lato&display=swap');
 
         table {
@@ -87,22 +88,12 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div>
+    <div>
         <br />
         <br />
         <div class="m-2" id="Outer">
             <br />
-            <div style="display: flex; justify-content: center">
-
-                <div class="btn-group px-3" role="group">
-                    <button type="button" class="btn btn-secondary">Table</button>
-                    <div class="btn-group" role="group">
-                        <asp:DropDownList class="btn btn-secondary" ID="TablesDropDownList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="GetCurrentOrderId"></asp:DropDownList>
-                    </div>
-                </div>
-                <br />
-               
-            </div>
+            <br />
             <br />
             <div style="display: flex; justify-content: center">
                 <asp:Button class="btn btn-success mr-1" ID="Button1" runat="server" Text="Veg" value="1" OnCommand="ItemsByCategory" CommandName="veg" CommandArgument="1" />
@@ -154,9 +145,8 @@
                     </table>
                 </FooterTemplate>
             </asp:Repeater>
-            <asp:Label ID="Label2" runat="server" Text="" Style="color: white"></asp:Label>
             <br />
-            
+
         </div>
     </div>
 </asp:Content>
