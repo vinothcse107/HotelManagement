@@ -5,6 +5,120 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=B612&family=Copse&family=Lato&display=swap');
+
+        .td {
+            border: none;
+        }
+
+        table {
+            border-spacing: unset;
+            border-collapse: collapse;
+            background: white;
+            border: none;
+            border-color: transparent;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+            table * {
+                position: relative;
+                font-family: 'Lato', sans-serif;
+                font-weight: 500
+            }
+
+            table td, table th {
+                padding-left: 8px;
+            }
+
+            table th {
+                height: 60px;
+                background: #36304a;
+                /*font-family: 'Aboreto', cursive;*/
+                font-family: 'B612', sans-serif;
+            }
+
+            table tr {
+                height: 50px;
+            }
+
+            table td.Quantity {
+                width: max-content;
+            }
+
+            table td, table th {
+                text-align: center;
+            }
+
+                table td.l, table th.l {
+                    text-align: right;
+                }
+
+                table td.c, table th.c {
+                    text-align: center;
+                }
+
+                table td.r, table th.r {
+                    text-align: center;
+                }
+
+
+        th {
+            font-family: Fira Sans;
+            font-size: 18px;
+            color: #fff;
+            line-height: 1.2;
+            font-weight: unset;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        tr {
+            font-family: OpenSans-Regular;
+            font-size: 15px;
+            color: #808080;
+            line-height: 1.2;
+            font-weight: unset;
+        }
+
+            tr:hover {
+                color: #555555;
+                background-color: #f5f5f5;
+                cursor: pointer;
+            }
+
+        .amount {
+            background-color: white;
+            color: black;
+            height: fit-content;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .raise:hover,
+        .raise:focus {
+            box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+            transform: translateY(-0.25em);
+            color: #ffa260
+        }
+
+        button {
+            background: white;
+            border: 2px solid;
+            font: inherit;
+            line-height: 1;
+            font-size: 7px;
+            font-weight: 500;
+            height: 45px;
+            width: 40px
+        }
+    </style>
 </head>
 <body>
 

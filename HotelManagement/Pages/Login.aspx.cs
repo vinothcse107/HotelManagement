@@ -14,6 +14,8 @@ namespace HotelManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            HashSet<Orders> HashOrdersPlaced = new HashSet<Orders>();
+            Session["OrderPlaced"] = HashOrdersPlaced;
         }
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
@@ -27,7 +29,7 @@ namespace HotelManagement
             ResponseDTO rt = ac.Login(loginDTO);
             if (rt.access)
             {
-                Session["Check"] = "Hi There !";
+
                 if (rt.role.Equals("admin"))
                 {
                     var ad = new SessionDTO()
@@ -50,15 +52,27 @@ namespace HotelManagement
                         role = rt.role,
                         sid = Session.SessionID
                     };
-                    HashSet<Orders> HashOrdersPlaced = new HashSet<Orders>();
-                    Session["OrderPlaced"] = HashOrdersPlaced;
 
                     Session["user"] = ses;
                     Response.Redirect("~/Waiter/MenuList.aspx");
                 }
             }
             else
-                ResponseLabel.Text = rt.message.ToString();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(rt.message.ToString(), "error", ""), true);
+        }
+        private string CallToastr(string msg, string status, string func)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }
