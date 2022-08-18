@@ -126,6 +126,9 @@
     <Content Include="Connected Services\HotelService\HotelManagement.HotelService.GroupByOrderList.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\HotelService\HotelManagement.HotelService.KitchenOrderDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\HotelService\HotelService.disco" />
     <None Include="Connected Services\HotelService\configuration91.svcinfo" />
     <None Include="Connected Services\HotelService\configuration.svcinfo" />
@@ -147,6 +150,7 @@
     <Content Include="Images\vegeblack1.jpg" />
     <Content Include="Images\WaiterPage1.jpg" />
     <Content Include="Images\WaiterPage2.jpg" />
+    <Content Include="Kitchen.aspx" />
     <Content Include="Pages\AdminControls.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Site.css" />
@@ -355,6 +359,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Kitchen.aspx.cs">
+      <DependentUpon>Kitchen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kitchen.aspx.designer.cs">
+      <DependentUpon>Kitchen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AdminControls.aspx.cs">
       <DependentUpon>AdminControls.aspx</DependentUpon>

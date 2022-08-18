@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfKitchenOrderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KitchenOrderDTO" nillable="true" type="tns:KitchenOrderDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKitchenOrderDTO" nillable="true" type="tns:ArrayOfKitchenOrderDTO" />
+  <xs:complexType name="KitchenOrderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KitchenOrderDTO" nillable="true" type="tns:KitchenOrderDTO" />
   <xs:complexType name="ArrayOfOrderListDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderListDTO" nillable="true" type="tns:OrderListDTO" />

@@ -187,5 +187,28 @@ namespace HotelWCFService
                 return y;
             }
         }
+
+
+        public List<KitchenOrderDTO> GetItemsByOrderIdList(int OrderNo)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = $"GetItemsByOrderId";
+                cmd.Parameters.Add(new SqlParameter("@OrderId", OrderNo));
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                return GenConList<KitchenOrderDTO>.ExecutorGen(cmd);
+            }
+        }
+
+        public DataTable GetItemsByOrderIdDt(int OrderNo)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = $"GetItemsByOrderId";
+                DataTable dt = GenCon.Executor(cmd);
+                return dt;
+            }
+        }
     }
 }

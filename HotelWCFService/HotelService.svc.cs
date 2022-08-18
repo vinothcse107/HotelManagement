@@ -49,6 +49,12 @@ namespace HotelWCFService
         DataTable GetOrderItemsForTable(int TableNo);
 
         [OperationContract]
+        List<KitchenOrderDTO> GetItemsByOrderIdList(int OrderNo);
+
+        [OperationContract]
+        DataTable GetItemsByOrderIdDt(int OrderNo);
+
+        [OperationContract]
         List<OrderListDTO> GetOrderItemsForTableList(int TableNo);
 
         [OperationContract]

@@ -28,6 +28,8 @@ namespace HotelManagement.Pages
             }
             else
             {
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(Session["Check"].ToString(), "success", ""), true);
+
                 if (!IsPostBack)
                 {
                     DropDownList(); //Add Dynamic Table Values to DropDown
@@ -62,7 +64,14 @@ namespace HotelManagement.Pages
         }
         protected void Order_Click(object sender, EventArgs e)
         {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Order Placed", "success", ""), true);
+            var on = Convert.ToInt32(Session["OrderNo"]);
 
+            HashSet<Orders> hs = (HashSet<Orders>)Session["OrderPlaced"];
+            hs.Add(new Orders { OrderId = on });
+
+
+            Session["OrderPlaced"] = hs;
         }
 
         protected void Add_Click(object sender, EventArgs e)
@@ -124,6 +133,11 @@ namespace HotelManagement.Pages
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ex.Message, "error", ""), true);
 
             }
+        }
+
+        public void OrderReady()
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Order Ready!!!", "info", ""), true);
         }
         private string CallToastr(string msg, string status, string func)
         {

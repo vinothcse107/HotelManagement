@@ -27,6 +27,7 @@ namespace HotelManagement
             ResponseDTO rt = ac.Login(loginDTO);
             if (rt.access)
             {
+                Session["Check"] = "Hi There !";
                 if (rt.role.Equals("admin"))
                 {
                     var ad = new SessionDTO()
@@ -49,6 +50,9 @@ namespace HotelManagement
                         role = rt.role,
                         sid = Session.SessionID
                     };
+                    HashSet<Orders> HashOrdersPlaced = new HashSet<Orders>();
+                    Session["OrderPlaced"] = HashOrdersPlaced;
+
                     Session["user"] = ses;
                     Response.Redirect("~/Waiter/MenuList.aspx");
                 }

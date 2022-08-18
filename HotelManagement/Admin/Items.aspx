@@ -34,7 +34,7 @@
                                 <div id="DivAddItems" style="border-radius: 10px; width: 488px; color: #000000;">
                                     <div class="form-label-group">
                                         <asp:Label class="control-label" runat="server" Text="ItemName" Font-Size="Larger"></asp:Label>
-                                        <asp:TextBox ID="ItemName" class="form-control" runat="server" required Minlength="5" MaxLength="30" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
+                                        <asp:TextBox ID="ItemName" class="form-control" runat="server" Minlength="5" MaxLength="30" Height="30px" Width="353px" Style="margin: auto"></asp:TextBox>
                                     </div>
                                     <br />
                                     <div class="form-label-group">

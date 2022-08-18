@@ -83,7 +83,7 @@ GO
 CREATE PROCEDURE GetItemsByOrderId   
 	@OrderId int
 AS   
-	select i.ItemName , i.Price , x.Quantity 
+	select i.ItemName , x.Quantity 
 	from Order_Items_Link x join Items i 
 	on x.ItemId = i.ItemId 
 	where x.OrderId = @OrderId;

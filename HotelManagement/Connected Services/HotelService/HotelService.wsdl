@@ -27,6 +27,18 @@
   <wsdl:message name="IItemsService_GetOrderItemsForTable_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOrderItemsForTableResponse" />
   </wsdl:message>
+  <wsdl:message name="IItemsService_GetItemsByOrderIdList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsByOrderIdList" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetItemsByOrderIdList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsByOrderIdListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetItemsByOrderIdDt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsByOrderIdDt" />
+  </wsdl:message>
+  <wsdl:message name="IItemsService_GetItemsByOrderIdDt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsByOrderIdDtResponse" />
+  </wsdl:message>
   <wsdl:message name="IItemsService_GetOrderItemsForTableList_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrderItemsForTableList" />
   </wsdl:message>
@@ -168,6 +180,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetOrderItemsForTable" message="tns:IItemsService_GetOrderItemsForTable_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetOrderItemsForTableResponse" message="tns:IItemsService_GetOrderItemsForTable_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetItemsByOrderIdList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItemsByOrderIdList" message="tns:IItemsService_GetItemsByOrderIdList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsByOrderIdListResponse" message="tns:IItemsService_GetItemsByOrderIdList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsByOrderIdDt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetItemsByOrderIdDt" message="tns:IItemsService_GetItemsByOrderIdDt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetItemsByOrderIdDtResponse" message="tns:IItemsService_GetItemsByOrderIdDt_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetOrderItemsForTableList">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemsService/GetOrderItemsForTableList" message="tns:IItemsService_GetOrderItemsForTableList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemsService/GetOrderItemsForTableListResponse" message="tns:IItemsService_GetOrderItemsForTableList_OutputMessage" />
@@ -282,6 +302,24 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetOrderItemsForTable">
       <soap:operation soapAction="http://tempuri.org/IItemsService/GetOrderItemsForTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsByOrderIdList">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/GetItemsByOrderIdList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsByOrderIdDt">
+      <soap:operation soapAction="http://tempuri.org/IItemsService/GetItemsByOrderIdDt" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

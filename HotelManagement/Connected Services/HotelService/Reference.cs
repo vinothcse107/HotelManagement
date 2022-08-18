@@ -15,6 +15,67 @@ namespace HotelManagement.HotelService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="KitchenOrderDTO", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
+    [System.SerializableAttribute()]
+    public partial class KitchenOrderDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ItemNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuantityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ItemName {
+            get {
+                return this.ItemNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemNameField, value) != true)) {
+                    this.ItemNameField = value;
+                    this.RaisePropertyChanged("ItemName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="OrderListDTO", Namespace="http://schemas.datacontract.org/2004/07/HotelWCFService.DTO")]
     [System.SerializableAttribute()]
     public partial class OrderListDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -841,6 +902,18 @@ namespace HotelManagement.HotelService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetOrderItemsForTable", ReplyAction="http://tempuri.org/IItemsService/GetOrderItemsForTableResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> GetOrderItemsForTableAsync(int TableNo);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetItemsByOrderIdList", ReplyAction="http://tempuri.org/IItemsService/GetItemsByOrderIdListResponse")]
+        HotelManagement.HotelService.KitchenOrderDTO[] GetItemsByOrderIdList(int OrderNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetItemsByOrderIdList", ReplyAction="http://tempuri.org/IItemsService/GetItemsByOrderIdListResponse")]
+        System.Threading.Tasks.Task<HotelManagement.HotelService.KitchenOrderDTO[]> GetItemsByOrderIdListAsync(int OrderNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetItemsByOrderIdDt", ReplyAction="http://tempuri.org/IItemsService/GetItemsByOrderIdDtResponse")]
+        System.Data.DataTable GetItemsByOrderIdDt(int OrderNo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetItemsByOrderIdDt", ReplyAction="http://tempuri.org/IItemsService/GetItemsByOrderIdDtResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetItemsByOrderIdDtAsync(int OrderNo);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemsService/GetOrderItemsForTableList", ReplyAction="http://tempuri.org/IItemsService/GetOrderItemsForTableListResponse")]
         HotelManagement.HotelService.OrderListDTO[] GetOrderItemsForTableList(int TableNo);
         
@@ -947,6 +1020,22 @@ namespace HotelManagement.HotelService {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> GetOrderItemsForTableAsync(int TableNo) {
             return base.Channel.GetOrderItemsForTableAsync(TableNo);
+        }
+        
+        public HotelManagement.HotelService.KitchenOrderDTO[] GetItemsByOrderIdList(int OrderNo) {
+            return base.Channel.GetItemsByOrderIdList(OrderNo);
+        }
+        
+        public System.Threading.Tasks.Task<HotelManagement.HotelService.KitchenOrderDTO[]> GetItemsByOrderIdListAsync(int OrderNo) {
+            return base.Channel.GetItemsByOrderIdListAsync(OrderNo);
+        }
+        
+        public System.Data.DataTable GetItemsByOrderIdDt(int OrderNo) {
+            return base.Channel.GetItemsByOrderIdDt(OrderNo);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetItemsByOrderIdDtAsync(int OrderNo) {
+            return base.Channel.GetItemsByOrderIdDtAsync(OrderNo);
         }
         
         public HotelManagement.HotelService.OrderListDTO[] GetOrderItemsForTableList(int TableNo) {

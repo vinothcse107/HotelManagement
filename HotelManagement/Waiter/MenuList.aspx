@@ -159,7 +159,7 @@
                         <td>
 
                             <asp:Label Text='<%# (int)Eval("TotalQuantity") > 0 ? "Available" : "Not Available" %>'
-                                class='<%# (int)Eval("TotalQuantity") > 0 ? "bg-success" : "bg-danger" %>'
+                                class='<%# (int)Eval("TotalQuantity") > 0 ? "text-success" : "text-danger" %>'
                                 runat="server" />
                         </td>
                     </tr>

@@ -9,4 +9,6 @@ namespace HotelWCFService.DTO
     {
         public int TableId { get; set; }
     }
+
+    
 }
